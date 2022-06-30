@@ -51,5 +51,10 @@
       "json",
       "node"
     ]
-  }
+  },
+  "rnpm":{
+    "assets":[
+        "./src/assests/fonts"
+    ]
+}
 }

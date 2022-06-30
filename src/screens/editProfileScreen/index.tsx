@@ -173,7 +173,6 @@ export default function EditProfileScreen() {
         </View>
       </KeyboardAwareScrollView>
       <View>
-        {/* <CustomButton /> */}
         <TouchableOpacity style={styles.SubmitButtonTouchable}>
           <Text style={styles.SubmitButtonStyle}>{'SUBMIT'}</Text>
         </TouchableOpacity>

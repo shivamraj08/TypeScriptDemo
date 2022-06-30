@@ -130,6 +130,8 @@ export const styles = StyleSheet.create({
       marginRight:15,
     },
     SubmitButtonStyle: {
+      // fontFamily: 'Anek-Latin',
+      // fontFamily: 'Times New Roman',
       fontSize: 18,
       fontWeight: '900',
       textAlign: 'center',

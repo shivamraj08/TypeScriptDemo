@@ -10,5 +10,10 @@
         correct:require('../assests/images/correct.png'),
         google:require('../assests/images/google_logo.png'),
         apple:require('../assests/images/apple_logo.png'),
-        backarrow:require('../assests/images/backarrow.png')
+        backarrow:require('../assests/images/backarrow.png'),
+        bmx:require('../assests/images/BMX1.png'),
+        rectangle:require('../assests/images/Rectangle6.png'),
+        footerPattern:require('../assests/images/footerPattern.png'),
+        like:require('../assests/images/thumb.png'),
+        dialogBox:require('../assests/images/Dialog_Box.png')
 }

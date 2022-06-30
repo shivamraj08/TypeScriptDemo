@@ -6,7 +6,7 @@ import COLOR from '../../utils/color';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {regexName,regexEmail,regexPhoneNo,regexPassword,} from '../../utils/regex';
 
-export default function SignUpScreen({navigation}) {
+export default function SignUpScreen({navigation}:any) {
   const [checkUncheck, setCheckUncheck] = useState(false);
   const [email, setEmail] = useState('');
   const [emailValidError, setEmailValidError] = useState('');
@@ -69,7 +69,7 @@ export default function SignUpScreen({navigation}) {
           <CustomTextInput
             label="Full Name"
             value={name}
-            onChangeText={value => {
+            onChangeText={value=> {
               setName(value);
               validName(value);
             }}
