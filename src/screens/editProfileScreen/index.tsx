@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  StatusBar,
-  ImageBackground,
-} from 'react-native';
+import {Text,View,TouchableOpacity,Image,StatusBar,ImageBackground,} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -28,15 +21,6 @@ export default function EditProfileScreen() {
     'Select Your Identity',
   );
 
-  // useEffect(() => {
-  //   console.log(
-  //     'selected date',
-  //     [date.getMonth() + 1, '/', date.getDate(), '/', date.getFullYear()].join(
-  //       '',
-  //     ),
-  //   );
-  // }, [date]);
-
   const calendarOpen = () => {
     setOpen(true);
   };
@@ -56,7 +40,6 @@ export default function EditProfileScreen() {
           />
         </Modal>
         <Text style={styles.header}>
-          {' '}
           {'Hi  John! \nTell us about yourself.'}
         </Text>
       </View>

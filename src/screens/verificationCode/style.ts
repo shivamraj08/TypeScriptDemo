@@ -1,0 +1,127 @@
+import { StyleSheet } from "react-native";
+import COLOR from "../../utils/color";
+import { vh, vw} from "../../utils/dimensions";
+
+export const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: COLOR.BLACK,
+    },
+    txtinp: {
+      height: vh(48),
+      width: vw(64),
+      borderWidth: 1,
+      borderColor: COLOR.WHITE,
+      borderRadius: 5,
+      color: '#44C2E3',
+      fontSize: 24,
+      textAlign: 'center',
+      fontWeight: '900',
+      marginTop: 20,
+    },
+    backArrowStyle: {
+      height: 20,
+      width: 20,
+      marginLeft: 20,
+      marginBottom: 20,
+      resizeMode: 'contain',
+    },
+    verificationTextStyle: {
+      width: 292,
+      height: 32,
+      fontSize: 24,
+      fontStyle: 'italic',
+      fontWeight: '900',
+      marginLeft: 24,
+      color: COLOR.WHITE,
+    },
+    editButtonStyle: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: COLOR.BLUE,
+      paddingHorizontal: 10,
+    },
+    taglineStyle: {
+      fontSize: 14,
+      fontWeight: '400',
+      width: 326,
+      height: 20,
+      marginLeft: 24,
+      color: COLOR.WHITE,
+      marginTop: 20,
+    },
+    SubmitButtonTouchable: {
+      backgroundColor: '#44C2E3',
+      width: 350,
+      alignItems: 'center',
+      borderRadius: 5,
+      borderWidth: 1,
+      marginHorizontal: 30,
+      marginTop: 30,
+      height: 48,
+    },
+    SubmitButtonStyle: {
+      fontSize: 18,
+      fontWeight: '900',
+      textAlign: 'center',
+      marginBottom: 20,
+      top: 10,
+      fontStyle: 'italic',
+    },
+    notReceivedTextStyle: {
+      marginTop: 40,
+      color: 'white',
+      marginLeft: 20,
+      fontSize: 16,
+      textAlign: 'center',
+    },
+    resendButtonStyle: {
+      fontSize: 20,
+      fontStyle: 'italic',
+      fontWeight: '900',
+      textAlign: 'center',
+      marginTop: 5,
+      color: COLOR.BLUE,
+    },
+    tagLineView: {
+      flexDirection: 'row',
+    },
+    textInputView: {
+      flexDirection: 'row',
+      justifyContent: 'space-evenly',
+      color: 'black',
+    },
+    bmxImg: {
+      resizeMode: 'contain',
+      width: '100%',
+      height: '100%',
+    },
+    bmxView: {
+      height: 364,
+      width: 333,
+      marginTop: 25,
+    },
+    footerImgStyle: {
+      height: 71,
+      width: 375,
+      zIndex: 1,
+      position: 'absolute',
+      bottom: 0,
+    },
+    numberTextStyle: {
+      color: COLOR.WHITE,
+      marginBottom: 20,
+      marginLeft: 24,
+    },
+  
+    SubmitButtonTouchableinactive: {
+      backgroundColor: '#282828',
+      width: 350,
+      alignItems: 'center',
+      borderRadius: 5,
+      borderWidth: 1,
+      marginHorizontal: 30,
+      marginTop: 30,
+      height: 48,
+    },
+  });

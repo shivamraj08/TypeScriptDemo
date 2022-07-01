@@ -1,29 +1,34 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  SafeAreaView,
-  TextInput,
-} from 'react-native';
+import {Text,View,Image,TouchableOpacity,SafeAreaView,TextInput,} from 'react-native';
 import React, {useRef} from 'react';
 import {images} from '../../utils/images';
-import COLOR from '../../utils/color';
+import Modal from 'react-native-modal';
+import CongratsModal from '../modals/congratsModal';
+import { styles } from './style';
+import { STRINGS } from '../../utils/strings';
 
-export default function VerificationScreen() {
+export default function VerificationScreen({navigation}:any) {
   const first = useRef<any>(null);
   const second = useRef<any>(null);
   const third = useRef<any>(null);
   const fourth = useRef<any>(null);
   const [pin, setPin] = React.useState('');
+  const [modalOpen, setModalOpen] = React.useState(false);
+
+  const CongratsMsg = () => {
+    setModalOpen(!modalOpen);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
+      <Modal isVisible={modalOpen}>
+        <CongratsModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      </Modal>
       <View>
+        <TouchableOpacity onPress={()=>navigation.goBack()}>
         <Image style={styles.backArrowStyle} source={images.backarrow} />
+        </TouchableOpacity>
         <Text style={styles.verificationTextStyle}>
-          {'Enter Verification Code'}
+          {STRINGS.LABEL.VERIFICATION}
         </Text>
         <View>
           <Text style={styles.taglineStyle}>
@@ -33,7 +38,7 @@ export default function VerificationScreen() {
         <View style={styles.tagLineView}>
           <Text style={styles.numberTextStyle}>{'+17345678926'}</Text>
           <TouchableOpacity>
-            <Text style={styles.editButtonStyle}>{'Edit'}</Text>
+            <Text style={styles.editButtonStyle}>{STRINGS.LABEL.EDIT}</Text>
           </TouchableOpacity>
         </View>
 
@@ -80,7 +85,9 @@ export default function VerificationScreen() {
           />
         </View>
         {pin.length == 4 ? (
-          <TouchableOpacity style={styles.SubmitButtonTouchable}>
+          <TouchableOpacity
+            style={styles.SubmitButtonTouchable}
+            onPress={CongratsMsg}>
             {<Text style={styles.SubmitButtonStyle}>{'SUBMIT'}</Text>}
           </TouchableOpacity>
         ) : (
@@ -114,128 +121,4 @@ export default function VerificationScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'black',
-  },
-  txtinp: {
-    height: 48,
-    width: 64,
-    borderWidth: 1,
-    borderColor: COLOR.WHITE,
-    borderRadius: 5,
-    // backgroundColor: COLOR.BLACK,
-    color: '#44C2E3',
-    fontSize: 24,
-    textAlign: 'center',
-    fontWeight: '900',
-    marginTop:20
-  },
-  backArrowStyle: {
-    height: 20,
-    width: 20,
-    marginLeft: 20,
-    marginBottom: 20,
-    resizeMode: 'contain',
-  },
-  verificationTextStyle: {
-    width: 292,
-    height: 32,
-    fontSize: 24,
-    fontStyle: 'italic',
-    fontWeight: '900',
-    marginLeft: 24,
-    color: COLOR.WHITE,
-  },
-  editButtonStyle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: COLOR.BLUE,
-    paddingHorizontal: 10,
-  },
-  taglineStyle: {
-    fontSize: 14,
-    fontWeight: '400',
-    width: 326,
-    height: 20,
-    marginLeft: 24,
-    color: COLOR.WHITE,
-    marginTop:20
-  },
-  SubmitButtonTouchable: {
-    backgroundColor: '#44C2E3',
-    width: 350,
-    alignItems: 'center',
-    borderRadius: 5,
-    borderWidth: 1,
-    marginHorizontal: 30,
-    marginTop: 30,
-    height: 48,
-  },
-  SubmitButtonStyle: {
-    fontSize: 18,
-    fontWeight: '900',
-    textAlign: 'center',
-    marginBottom: 20,
-    top: 10,
-    fontStyle: 'italic',
-    // fontFamily:'Smooch'
-  },
-  notReceivedTextStyle: {
-    marginTop: 40,
-    color: 'white',
-    marginLeft: 20,
-    fontSize: 16,
-    textAlign: 'center',
-  },
-  resendButtonStyle: {
-    fontSize: 20,
-    fontStyle: 'italic',
-    fontWeight: '900',
-    textAlign: 'center',
-    marginTop: 5,
-    color: COLOR.BLUE,
-  },
-  tagLineView: {
-    flexDirection: 'row',
-  },
-  textInputView: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    color: 'black',
-  },
-  bmxImg: {
-    resizeMode: 'contain',
-    width: '100%',
-    height: '100%',
-  },
-  bmxView: {
-    height: 364,
-    width: 333,
-    marginTop: 25,
-  },
-  footerImgStyle: {
-    height: 71,
-    width: 375,
-    zIndex: 1,
-    position: 'absolute',
-    bottom: 0,
-  },
-  numberTextStyle: {
-    color: COLOR.WHITE,
-    marginBottom: 20,
-    marginLeft: 24,
-  },
 
-  SubmitButtonTouchableinactive: {
-    backgroundColor: '#282828',
-    width: 350,
-    alignItems: 'center',
-    borderRadius: 5,
-    borderWidth: 1,
-    marginHorizontal: 30,
-    marginTop: 30,
-    height: 48,
-  },
-});

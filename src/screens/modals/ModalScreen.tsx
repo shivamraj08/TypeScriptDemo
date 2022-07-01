@@ -4,11 +4,9 @@ import {
   View,
   Image,
   TouchableOpacity,
-  Dimensions,
 } from 'react-native';
 import React from 'react';
-
-const {height} = Dimensions.get('screen');
+import { images } from '../../utils/images';
 
 export default function ModalScreen(props: any) {
   const {openModal, setOpenModal, setSelectedIdentity} = props;
@@ -17,7 +15,6 @@ export default function ModalScreen(props: any) {
     setSelectedIdentity('Athelete');
     setOpenModal(!openModal);
   };
-
   const handleFan = () => {
     setSelectedIdentity('Fan');
     setOpenModal(!openModal);
@@ -29,7 +26,7 @@ export default function ModalScreen(props: any) {
         onPress={() => setOpenModal(!openModal)}
         activeOpacity={0.5}>
         <Image
-          source={require('../../assests/images/ic_cancel.png')}
+          source={images.cancel}
           style={styles.backArrImg}
         />
       </TouchableOpacity>
@@ -37,13 +34,13 @@ export default function ModalScreen(props: any) {
       <TouchableOpacity onPress={handleFan}>
         <Image
           style={styles.modalimage}
-          source={require('../../assests/images/fan.png')}
+          source={images.fan}
         />
       </TouchableOpacity>
       <TouchableOpacity onPress={handleAthlete}>
         <Image
           style={styles.modalimage}
-          source={require('../../assests/images/athl.png')}
+          source={images.athlete}
         />
       </TouchableOpacity>
     </View>
@@ -54,10 +51,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.4,
     justifyContent: 'flex-end',
-    marginTop:'auto',
-    borderTopWidth:2,
-    borderColor:'#44C2E3',
-    backgroundColor:'black',
+    marginTop: 'auto',
+    borderTopWidth: 2,
+    borderColor: '#44C2E3',
+    backgroundColor: 'black',
     alignItems: 'center',
   },
   body: {

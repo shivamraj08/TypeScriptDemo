@@ -15,5 +15,8 @@
         rectangle:require('../assests/images/Rectangle6.png'),
         footerPattern:require('../assests/images/footerPattern.png'),
         like:require('../assests/images/thumb.png'),
-        dialogBox:require('../assests/images/Dialog_Box.png')
+        dialogBox:require('../assests/images/Dialog_Box.png'),
+        fan:require('../assests/images/fan.png'),
+        athlete:require('../assests/images/athl.png'),
+        cancel:require('../assests/images/ic_cancel.png'),
 }
