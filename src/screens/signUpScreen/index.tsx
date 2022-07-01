@@ -4,9 +4,10 @@ import CustomTextInput from '../../component/customTextInput';
 import {images} from '../../utils/images';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {regexName,regexEmail,regexPhoneNo,regexPassword,} from '../../utils/regex';
-import { styles } from './style';
+import {styles} from './style';
+import {STRINGS} from '../../utils/strings';
 
-export default function SignUpScreen({navigation}:any) {
+export default function SignUpScreen({navigation}: any) {
   const [checkUncheck, setCheckUncheck] = useState(false);
   const [email, setEmail] = useState('');
   const [emailValidError, setEmailValidError] = useState('');
@@ -62,14 +63,14 @@ export default function SignUpScreen({navigation}:any) {
   return (
     <SafeAreaView style={styles.signUpContainer}>
       <Image source={images.backarrow} style={styles.backArrowStyle} />
-      <Text style={styles.createTextStyle}>{'Create Account'}</Text>
-      <Text style={styles.taglineStyle}>{'Sign-up to get started'}</Text>
+      <Text style={styles.createTextStyle}>{STRINGS.LABEL.CREATE_ACCOUNT}</Text>
+      <Text style={styles.taglineStyle}>{STRINGS.LABEL.SIGN_UP_TAGLINE}</Text>
       <KeyboardAwareScrollView>
         <View style={styles.textInputStyle}>
           <CustomTextInput
-            label="Full Name"
+            label={STRINGS.LABEL.FULL_NAME}
             value={name}
-            onChangeText={value=> {
+            onChangeText={value => {
               setName(value);
               validName(value);
             }}
@@ -79,7 +80,7 @@ export default function SignUpScreen({navigation}:any) {
           ) : null}
           <CustomTextInput
             keyboardType={'number-pad'}
-            label="Mobile Number"
+            label={STRINGS.LABEL.MOBILE_NUMBER}
             value={phoneNo}
             onChangeText={value => {
               setPhoneNo(value);
@@ -90,7 +91,7 @@ export default function SignUpScreen({navigation}:any) {
             <Text style={styles.validErrorStyle}>{phoneNoError}</Text>
           ) : null}
           <CustomTextInput
-            label="Email"
+            label={STRINGS.LABEL.EMAIL}
             value={email}
             onChangeText={value => {
               setEmail(value);
@@ -101,8 +102,8 @@ export default function SignUpScreen({navigation}:any) {
             <Text style={styles.validErrorStyle}>{emailValidError}</Text>
           ) : null}
           <CustomTextInput
-            label="Password"
-            placeholder="Password"
+            label={STRINGS.LABEL.PASSWORD}
+            placeholder={STRINGS.LABEL.PASSWORD}
             value={password}
             securetextentry={true}
             onChangeText={(value: any) => {
@@ -127,27 +128,28 @@ export default function SignUpScreen({navigation}:any) {
               <Image style={styles.checkboxStyle} source={images.checkbox} />
             )}
           </TouchableOpacity>
-
           <View style={styles.AgreeTermsViewStyle}>
-            <Text style={styles.agreeStyle}>{'I agree to'}</Text>
-            <TouchableOpacity activeOpacity={0.5}
-            onPress={()=>navigation.navigate("Terms")}
-            >
-              <Text style={styles.termsButtonStyle}>{'Terms of Use*'}</Text>
+            <Text style={styles.agreeStyle}>{STRINGS.LABEL.AGREE_TO}</Text>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => navigation.navigate('TermsScreen')}>
+              <Text style={styles.termsButtonStyle}>
+                {STRINGS.LABEL.TERMS_TEXT}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
         <TouchableOpacity
           activeOpacity={0.6}
           style={styles.createButtonTouchable}
-          onPress={()=> navigation.navigate('OtpVerify')}>
-          <Text style={styles.createButtonStyle}>{'CREATE ACCOUNT'}</Text>
+          onPress={() => navigation.navigate('OtpVerify')}>
+          <Text style={styles.createButtonStyle}>
+            {STRINGS.LABEL.CREATE_ACCOUNT}
+          </Text>
         </TouchableOpacity>
         <View style={styles.orViewStyle}>
           <View style={styles.lineStyle} />
-
-          <Text style={styles.orTextStyle}>{' OR '}</Text>
-
+          <Text style={styles.orTextStyle}>{STRINGS.LABEL.OR}</Text>
           <View style={styles.lineStyle} />
         </View>
         <TouchableOpacity activeOpacity={0.3}>
@@ -157,13 +159,16 @@ export default function SignUpScreen({navigation}:any) {
           <Image source={images.apple} style={styles.googleButton} />
         </TouchableOpacity>
         <View style={styles.lastViewSignIn}>
-          <Text style={styles.alreadyTextStyle}>{'Already a user'}</Text>
+          <Text style={styles.alreadyTextStyle}>
+            {STRINGS.LABEL.ALREADY_USER}
+          </Text>
           <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
-            <Text style={styles.signInButtonStyle}>{'Sign In'}</Text>
+            <Text style={styles.signInButtonStyle}>
+              {STRINGS.LABEL.SIGN_IN}
+            </Text>
           </TouchableOpacity>
         </View>
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 }
-

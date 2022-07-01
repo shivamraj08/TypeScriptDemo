@@ -1,34 +1,3 @@
-// import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-// import React from 'react';
-// import {images} from '../../utils/images';
-
-// export default function CongratsModal(props: any) {
-//   const {modalOpen, setModalOpen} = props;
-
-//   const modalClosed = () => {
-//     setModalOpen(!modalOpen);
-//   };
-
-//   return (
-//     <View style={{backgroundColor: 'black', flex: 1}}>
-//       <View style={{marginTop: 250, marginLeft: 20}}>
-//         <Image
-//           source={images.like}
-//           style={{height: 25, width: 27, marginLeft: 150}}
-//         />
-//         <TouchableOpacity onPress={modalClosed}>
-//           <Image
-//             source={images.dialogBox}
-//             style={{width: 328, height: 244, position: 'absolute'}}
-//           />
-//         </TouchableOpacity>
-//       </View>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({});
-
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {images} from '../../utils/images';

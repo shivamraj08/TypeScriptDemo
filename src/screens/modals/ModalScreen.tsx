@@ -1,47 +1,37 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
-import { images } from '../../utils/images';
+import {images} from '../../utils/images';
+import {STRINGS} from '../../utils/strings';
+import COLOR from '../../utils/color';
 
 export default function ModalScreen(props: any) {
   const {openModal, setOpenModal, setSelectedIdentity} = props;
 
   const handleAthlete = () => {
-    setSelectedIdentity('Athelete');
+    setSelectedIdentity(STRINGS.LABEL.ATHLETE);
     setOpenModal(!openModal);
   };
   const handleFan = () => {
-    setSelectedIdentity('Fan');
+    setSelectedIdentity(STRINGS.LABEL.FAN);
+    setOpenModal(!openModal);
+  };
+  const modalClosed = () => {
     setOpenModal(!openModal);
   };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => setOpenModal(!openModal)}
-        activeOpacity={0.5}>
-        <Image
-          source={images.cancel}
-          style={styles.backArrImg}
-        />
+      <TouchableOpacity onPress={modalClosed} activeOpacity={0.5}>
+        <Image source={images.cancel} style={styles.backArrImg} />
       </TouchableOpacity>
-      <Text style={styles.body}>{'Select your Identity'}</Text>
+      <Text style={styles.selectTextStyle}>
+        {STRINGS.LABEL.SELECT_IDENTITY}
+      </Text>
       <TouchableOpacity onPress={handleFan}>
-        <Image
-          style={styles.modalimage}
-          source={images.fan}
-        />
+        <Image style={styles.modalimage} source={images.fan} />
       </TouchableOpacity>
       <TouchableOpacity onPress={handleAthlete}>
-        <Image
-          style={styles.modalimage}
-          source={images.athlete}
-        />
+        <Image style={styles.modalimage} source={images.athlete} />
       </TouchableOpacity>
     </View>
   );
@@ -53,15 +43,15 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginTop: 'auto',
     borderTopWidth: 2,
-    borderColor: '#44C2E3',
-    backgroundColor: 'black',
+    borderColor: COLOR.BLUE,
+    backgroundColor: COLOR.BLACK,
     alignItems: 'center',
   },
-  body: {
+  selectTextStyle: {
     fontSize: 28,
     fontWeight: '900',
     marginTop: 70,
-    color: 'white',
+    color: COLOR.WHITE,
     fontStyle: 'italic',
   },
   modalimage: {
@@ -70,7 +60,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 1,
     borderWidth: 2,
-    borderColor: '#44C2E3',
+    borderColor: COLOR.BLUE,
   },
   backArrImg: {
     height: 28,

@@ -15,7 +15,7 @@ export default function NavigationScreen() {
         <Stack.Screen name="SignupProfile" component={SignUpScreen} />
         <Stack.Screen name="EditProfile" component={EditProfileScreen} />
         <Stack.Screen name="OtpVerify" component={VerificationScreen} />
-        <Stack.Screen name="Terms" component={TermsOfUse} />
+        <Stack.Screen name="TermsScreen" component={TermsOfUse} />
       </Stack.Navigator>
     </NavigationContainer>
   );
