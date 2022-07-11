@@ -1,19 +1,26 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity,Dimensions} from 'react-native';
 import React from 'react';
 import {images} from '../../utils/images';
 import {STRINGS} from '../../utils/strings';
 import COLOR from '../../utils/color';
+import {normalize} from '../../utils/dimensions';
+
 
 export default function ModalScreen(props: any) {
-  const {openModal, setOpenModal, setSelectedIdentity} = props;
+  const {openModal, setOpenModal, setSelectedIdentity, selectedIdentity} =
+    props;
 
   const handleAthlete = () => {
     setSelectedIdentity(STRINGS.LABEL.ATHLETE);
-    setOpenModal(!openModal);
+    setTimeout(() => {
+      setOpenModal(!openModal);
+    }, 200);
   };
   const handleFan = () => {
     setSelectedIdentity(STRINGS.LABEL.FAN);
-    setOpenModal(!openModal);
+    setTimeout(() => {
+      setOpenModal(!openModal);
+    }, 200);
   };
   const modalClosed = () => {
     setOpenModal(!openModal);
@@ -24,14 +31,35 @@ export default function ModalScreen(props: any) {
       <TouchableOpacity onPress={modalClosed} activeOpacity={0.5}>
         <Image source={images.cancel} style={styles.backArrImg} />
       </TouchableOpacity>
-      <Text style={styles.selectTextStyle}>
-        {STRINGS.LABEL.SELECT_IDENTITY}
-      </Text>
+      <View>
+        <Text style={styles.selectTextStyle}>
+          {STRINGS.LABEL.SELECT_IDENTITY}
+        </Text>
+      </View>
       <TouchableOpacity onPress={handleFan}>
-        <Image style={styles.modalimage} source={images.fan} />
+        <Text style={styles.fanTextStyle}>{STRINGS.LABEL.FAN}</Text>
+        <Image
+          style={{
+            ...styles.modalimage,
+            borderWidth: selectedIdentity == 'FAN' ? 2 : 0,
+          }}
+          source={images.fan}
+        />
+        {STRINGS.LABEL.FAN === selectedIdentity ? (
+          <Image style={styles.rightCheck} source={images.check} />
+        ) : null}
       </TouchableOpacity>
       <TouchableOpacity onPress={handleAthlete}>
-        <Image style={styles.modalimage} source={images.athlete} />
+        <Image
+          style={{
+            ...styles.modalimage,
+            borderWidth: selectedIdentity == 'ATHLETE' ? 2 : 0,
+          }}
+          source={images.athlete}
+        />
+        {STRINGS.LABEL.ATHLETE === selectedIdentity ? (
+          <Image style={styles.rightCheck} source={images.check} />
+        ) : null}
       </TouchableOpacity>
     </View>
   );
@@ -42,30 +70,50 @@ const styles = StyleSheet.create({
     flex: 0.4,
     justifyContent: 'flex-end',
     marginTop: 'auto',
-    borderTopWidth: 2,
+    borderTopWidth: 4,
     borderColor: COLOR.BLUE,
     backgroundColor: COLOR.BLACK,
     alignItems: 'center',
+    // bottom: normalize(20),
   },
   selectTextStyle: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: '900',
-    marginTop: 70,
+    marginTop: normalize(65),
     color: COLOR.WHITE,
     fontStyle: 'italic',
+    right: normalize(60),
   },
   modalimage: {
-    height: 104,
-    width: 357,
-    marginTop: 20,
-    borderRadius: 1,
-    borderWidth: 2,
+    height: normalize(104),
+    width: normalize(360),
+    marginTop: normalize(20),
+    borderRadius: 5,
     borderColor: COLOR.BLUE,
   },
   backArrImg: {
-    height: 28,
-    width: 28,
-    top: 65,
-    left: 155,
+    height: normalize(28),
+    width: normalize(28),
+    top: normalize(95),
+    left: normalize(155),
+  },
+  fanTextStyle: {
+    height: normalize(27),
+    width: normalize(59),
+    position: 'absolute',
+    fontSize: 28,
+    fontWeight: '900',
+    color: COLOR.WHITE,
+    top: normalize(60),
+    left: normalize(195),
+    zIndex: 1,
+    fontStyle: 'italic',
+  },
+  rightCheck: {
+    height: normalize(20),
+    width: normalize(20),
+    bottom: normalize(95),
+    resizeMode: 'contain',
+    left: normalize(335),
   },
 });

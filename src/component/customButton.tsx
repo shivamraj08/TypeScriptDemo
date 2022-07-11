@@ -1,30 +1,33 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
+import {normalize} from '../utils/dimensions';
+import COLOR from '../utils/color';
 
-export default function CustomButton() {
+export default function CustomButton(props: any) {
+  const {label, onPress} = props;
   return (
     <View>
-      <TouchableOpacity style={styles.SubmitButtonTouchable}>
-        <Text style={styles.SubmitButtonStyle}>{'SUBMIT'}</Text>
+      <TouchableOpacity activeOpacity={0.6} style={styles.customButtonTouchable} onPress={onPress}>
+        <Text style={styles.customButtonTextStyle}>{label}</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  SubmitButtonStyle: {
+  customButtonTextStyle: {
     fontSize: 18,
     fontWeight: '900',
     textAlign: 'center',
-    color: 'black',
-    marginBottom: 30,
-    top: 10,
+    color: COLOR.BLACK,
+    marginBottom: normalize(30),
+    top: normalize(15),
     fontStyle: 'italic',
   },
-  SubmitButtonTouchable: {
+  customButtonTouchable: {
     backgroundColor: '#44C2E3',
     width: '93%',
-    marginLeft: 15,
+    marginLeft: normalize(15),
     borderRadius: 5,
     borderWidth: 1,
   },

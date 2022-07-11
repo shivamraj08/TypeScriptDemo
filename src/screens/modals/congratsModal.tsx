@@ -1,15 +1,18 @@
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {images} from '../../utils/images';
-import {vh, vw} from '../../utils/dimensions';
 import COLOR from '../../utils/color';
 import {STRINGS} from '../../utils/strings';
+import {useNavigation} from '@react-navigation/native';
+import {normalize} from '../../utils/dimensions';
 
 export default function CongratsModal(props: any) {
   const {setModalOpen, modalOpen} = props;
+  const navigation = useNavigation();
 
   const modalClosed = () => {
     setModalOpen(!modalOpen);
+    navigation.navigate('selectIdentity');
   };
 
   return (
@@ -40,48 +43,52 @@ export default function CongratsModal(props: any) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.3,
+    // flex: 0.33,
     backgroundColor: '#121212',
-    borderTopWidth: 2,
     borderColor: COLOR.BLUE,
+    borderWidth: 0.4,
+    borderRadius: 10,
+    borderTopWidth: 2,
+    height:normalize(244),
+    width:normalize(330)
   },
   thumbStyleView: {
-    marginTop: vh(38),
+    marginTop: normalize(38),
     justifyContent: 'center',
     alignItems: 'center',
   },
   thumbImgStyle: {
-    height: vh(30),
-    width: vw(30),
+    height: normalize(30),
+    width: normalize(30),
   },
   headerViewStyle: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: vh(5),
+    marginTop: normalize(5),
   },
   congratstext: {
     color: COLOR.WHITE,
-    fontFamily: 'HelveticaNeue-Bold',
-    fontSize: 15,
-    fontWeight: 'bold',
+    fontSize: 14,
+    fontWeight: '900',
     marginTop: 10,
+    width: '45%',
+    height: normalize(24),
   },
   accountview: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: vh(12),
+    marginTop: normalize(12),
   },
-
   registeredTextStyle: {
     color: COLOR.WHITE,
     fontFamily: 'Helvetica',
     fontSize: 15,
   },
   continueTouchable: {
-    marginTop: vh(15),
+    marginTop: normalize(15),
     backgroundColor: COLOR.BLUE,
-    width: vw(280),
-    height: vh(48),
+    width: '85%',
+    height: normalize(48),
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
@@ -89,8 +96,7 @@ const styles = StyleSheet.create({
   },
   continueTextStyle: {
     color: COLOR.BLACK,
-    fontFamily: 'HelveticaNeue-BoldItalic',
     fontSize: 18,
-    fontWeight: '900',
+    fontWeight: '800',
   },
 });

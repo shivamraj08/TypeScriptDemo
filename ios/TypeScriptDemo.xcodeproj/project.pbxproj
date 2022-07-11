@@ -8,13 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* TypeScriptDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* TypeScriptDemoTests.m */; };
+		078C81B452F64D23BEC4D2DE /* helveticaNeue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEB149E8F1C04ACCBEA34279 /* helveticaNeue.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-TypeScriptDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-TypeScriptDemo.a */; };
+		100AF9AE8EEA4E9484438A47 /* helveticaNeueMediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 388E9646AAAC4365B6EDF527 /* helveticaNeueMediumItalic.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		28F7DBA2872344ABAD0127A9 /* Helvetica-Oblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6438EE05E8CC4DFC8CF8C5B3 /* Helvetica-Oblique.ttf */; };
+		30181FE4CD074A0882F8E4D5 /* helvetica-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 097C54F751AF42A5BC2D4DEB /* helvetica-light.ttf */; };
+		3B3B004F752E4808B9864A40 /* HelveticaNeueMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6DD12D21B1E44A88AE138B37 /* HelveticaNeueMedium.ttf */; };
+		5A83826B3DD342748C085F8D /* Helvetica.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5C8799C4074C0B92ADE608 /* Helvetica.ttf */; };
+		5B6D456148474E849FE1038B /* Helvetica-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE7D02731DF14107B00F46C3 /* Helvetica-Bold.ttf */; };
+		640CE91446044BB6B8EEEB3C /* helveticaNeueBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 173C717FC8AF4756A91E98AC /* helveticaNeueBoldItalic.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-TypeScriptDemo-TypeScriptDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-TypeScriptDemo-TypeScriptDemoTests.a */; };
 		7E20DE701FBA4F80B8063C20 /* AnekLatin-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B62AC5F8464D4F48BF14A9EC /* AnekLatin-VariableFont_wdth,wght.ttf */; };
+		80AD00EAB1DD4F9AAD04EACD /* Helvetica-BoldOblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B2F540ACE974BB7A0F3EB27 /* Helvetica-BoldOblique.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		BE8E44D463EF4964A04E0A9D /* HelveticaNeueItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5C681D7181247B3B3DE191D /* HelveticaNeueItalic.ttf */; };
+		D30C198D72504741A7FEA5DD /* helvetica-blackitalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DFB0E4DB845546C1A380B0B0 /* helvetica-blackitalic.ttf */; };
+		DE9FB47E3AD64667AEE8A6B3 /* HelveticaBlack.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B00662C8D1441F6A5D1B6F4 /* HelveticaBlack.ttf */; };
 		E329325744C246CBA8149858 /* Smooch-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA41490743AD453B9BF162C2 /* Smooch-Regular.ttf */; };
 /* End PBXBuildFile section */
 
@@ -32,22 +44,34 @@
 		00E356EE1AD99517003FC87E /* TypeScriptDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TypeScriptDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* TypeScriptDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeScriptDemoTests.m; sourceTree = "<group>"; };
+		097C54F751AF42A5BC2D4DEB /* helvetica-light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "helvetica-light.ttf"; path = "../src/assests/fonts/helvetica-light.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* TypeScriptDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypeScriptDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = TypeScriptDemo/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = TypeScriptDemo/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = TypeScriptDemo/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = TypeScriptDemo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TypeScriptDemo/main.m; sourceTree = "<group>"; };
+		173C717FC8AF4756A91E98AC /* helveticaNeueBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = helveticaNeueBoldItalic.ttf; path = ../src/assests/fonts/helveticaNeueBoldItalic.ttf; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-TypeScriptDemo-TypeScriptDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TypeScriptDemo-TypeScriptDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B2F540ACE974BB7A0F3EB27 /* Helvetica-BoldOblique.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Helvetica-BoldOblique.ttf"; path = "../src/assests/fonts/Helvetica-BoldOblique.ttf"; sourceTree = "<group>"; };
+		388E9646AAAC4365B6EDF527 /* helveticaNeueMediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = helveticaNeueMediumItalic.ttf; path = ../src/assests/fonts/helveticaNeueMediumItalic.ttf; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-TypeScriptDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeScriptDemo.debug.xcconfig"; path = "Target Support Files/Pods-TypeScriptDemo/Pods-TypeScriptDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-TypeScriptDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeScriptDemo.release.xcconfig"; path = "Target Support Files/Pods-TypeScriptDemo/Pods-TypeScriptDemo.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-TypeScriptDemo-TypeScriptDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeScriptDemo-TypeScriptDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-TypeScriptDemo-TypeScriptDemoTests/Pods-TypeScriptDemo-TypeScriptDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-TypeScriptDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TypeScriptDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6438EE05E8CC4DFC8CF8C5B3 /* Helvetica-Oblique.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Helvetica-Oblique.ttf"; path = "../src/assests/fonts/Helvetica-Oblique.ttf"; sourceTree = "<group>"; };
+		6DD12D21B1E44A88AE138B37 /* HelveticaNeueMedium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = HelveticaNeueMedium.ttf; path = ../src/assests/fonts/HelveticaNeueMedium.ttf; sourceTree = "<group>"; };
+		7B00662C8D1441F6A5D1B6F4 /* HelveticaBlack.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = HelveticaBlack.ttf; path = ../src/assests/fonts/HelveticaBlack.ttf; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TypeScriptDemo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-TypeScriptDemo-TypeScriptDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeScriptDemo-TypeScriptDemoTests.release.xcconfig"; path = "Target Support Files/Pods-TypeScriptDemo-TypeScriptDemoTests/Pods-TypeScriptDemo-TypeScriptDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B5C8799C4074C0B92ADE608 /* Helvetica.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Helvetica.ttf; path = ../src/assests/fonts/Helvetica.ttf; sourceTree = "<group>"; };
 		B62AC5F8464D4F48BF14A9EC /* AnekLatin-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AnekLatin-VariableFont_wdth,wght.ttf"; path = "../src/assests/fonts/AnekLatin-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
+		BEB149E8F1C04ACCBEA34279 /* helveticaNeue.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = helveticaNeue.ttf; path = ../src/assests/fonts/helveticaNeue.ttf; sourceTree = "<group>"; };
 		DA41490743AD453B9BF162C2 /* Smooch-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Smooch-Regular.ttf"; path = "../src/assests/fonts/Smooch-Regular.ttf"; sourceTree = "<group>"; };
+		DFB0E4DB845546C1A380B0B0 /* helvetica-blackitalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "helvetica-blackitalic.ttf"; path = "../src/assests/fonts/helvetica-blackitalic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F5C681D7181247B3B3DE191D /* HelveticaNeueItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = HelveticaNeueItalic.ttf; path = ../src/assests/fonts/HelveticaNeueItalic.ttf; sourceTree = "<group>"; };
+		FE7D02731DF14107B00F46C3 /* Helvetica-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Helvetica-Bold.ttf"; path = "../src/assests/fonts/Helvetica-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +182,18 @@
 			children = (
 				B62AC5F8464D4F48BF14A9EC /* AnekLatin-VariableFont_wdth,wght.ttf */,
 				DA41490743AD453B9BF162C2 /* Smooch-Regular.ttf */,
+				DFB0E4DB845546C1A380B0B0 /* helvetica-blackitalic.ttf */,
+				FE7D02731DF14107B00F46C3 /* Helvetica-Bold.ttf */,
+				1B2F540ACE974BB7A0F3EB27 /* Helvetica-BoldOblique.ttf */,
+				097C54F751AF42A5BC2D4DEB /* helvetica-light.ttf */,
+				6438EE05E8CC4DFC8CF8C5B3 /* Helvetica-Oblique.ttf */,
+				8B5C8799C4074C0B92ADE608 /* Helvetica.ttf */,
+				7B00662C8D1441F6A5D1B6F4 /* HelveticaBlack.ttf */,
+				BEB149E8F1C04ACCBEA34279 /* helveticaNeue.ttf */,
+				173C717FC8AF4756A91E98AC /* helveticaNeueBoldItalic.ttf */,
+				F5C681D7181247B3B3DE191D /* HelveticaNeueItalic.ttf */,
+				6DD12D21B1E44A88AE138B37 /* HelveticaNeueMedium.ttf */,
+				388E9646AAAC4365B6EDF527 /* helveticaNeueMediumItalic.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -261,6 +297,18 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				7E20DE701FBA4F80B8063C20 /* AnekLatin-VariableFont_wdth,wght.ttf in Resources */,
 				E329325744C246CBA8149858 /* Smooch-Regular.ttf in Resources */,
+				D30C198D72504741A7FEA5DD /* helvetica-blackitalic.ttf in Resources */,
+				5B6D456148474E849FE1038B /* Helvetica-Bold.ttf in Resources */,
+				80AD00EAB1DD4F9AAD04EACD /* Helvetica-BoldOblique.ttf in Resources */,
+				30181FE4CD074A0882F8E4D5 /* helvetica-light.ttf in Resources */,
+				28F7DBA2872344ABAD0127A9 /* Helvetica-Oblique.ttf in Resources */,
+				5A83826B3DD342748C085F8D /* Helvetica.ttf in Resources */,
+				DE9FB47E3AD64667AEE8A6B3 /* HelveticaBlack.ttf in Resources */,
+				078C81B452F64D23BEC4D2DE /* helveticaNeue.ttf in Resources */,
+				640CE91446044BB6B8EEEB3C /* helveticaNeueBoldItalic.ttf in Resources */,
+				BE8E44D463EF4964A04E0A9D /* HelveticaNeueItalic.ttf in Resources */,
+				3B3B004F752E4808B9864A40 /* HelveticaNeueMedium.ttf in Resources */,
+				100AF9AE8EEA4E9484438A47 /* helveticaNeueMediumItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

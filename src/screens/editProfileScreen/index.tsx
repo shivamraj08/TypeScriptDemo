@@ -1,5 +1,11 @@
-import React, {useState} from 'react';
-import {Text,View,TouchableOpacity,Image,StatusBar,ImageBackground,} from 'react-native';
+import React from 'react';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -8,18 +14,35 @@ import Modal from 'react-native-modal';
 import CustomTextInput from '../../component/customTextInput';
 import {images} from '../../utils/images';
 import ModalScreen from '../modals/ModalScreen';
-import { styles } from './style';
+import {styles} from './style';
+import {STRINGS} from '../../utils/strings';
+import {useRoute} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import CustomButton from '../../component/customButton';
+import {useDispatch, useSelector} from 'react-redux';
+import {sportsApi} from './action';
 
 export default function EditProfileScreen() {
-  const [coverimage, setCoverImage] = useState('');
-  const [profileImage, setProfileImage] = useState('');
-  const [date, setDate] = useState(new Date());
-  const [open, setOpen] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
-  const [selectedDate, setSelectedDate] = useState('DOB(MM/DD/YYYY)');
-  const [selectedIdentity, setSelectedIdentity] = useState(
+  const [coverimage, setCoverImage] = React.useState('');
+  const [profileImage, setProfileImage] = React.useState('');
+  const [date, setDate] = React.useState(new Date());
+  const [open, setOpen] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
+  const [selectedDate, setSelectedDate] = React.useState('DOB(MM/DD/YYYY)');
+  const [selectedIdentity, setSelectedIdentity] = React.useState(
     'Select Your Identity',
   );
+  const verify_Otp_Data = useSelector((store: any) => store.VerifyOtpReducer);
+  console.log('--------->', verify_Otp_Data);
+  const dispatch = useDispatch<any>();
+
+  const params = useRoute<any>();
+  const navigation = useNavigation<any>();
+
+  React.useEffect(() => {
+    setSelectedIdentity(params.params);
+    console.log(params.params);
+  }, [navigation]);
 
   const calendarOpen = () => {
     setOpen(true);
@@ -27,39 +50,60 @@ export default function EditProfileScreen() {
   const identityOpen = () => {
     setOpenModal(!openModal);
   };
+  const coverImagePicker = () =>
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    })
+      .then(image => {
+        console.log('image path', image);
+        setCoverImage(image.path);
+      })
+      .catch(err => {
+        console.log('ImageErr', err);
+      });
+
+  const profileImagePicker = () => {
+    ImagePicker.openPicker({cropping: true})
+      .then(image => {
+        setProfileImage(image.path);
+      })
+      .catch(err => {
+        console.log('ImageErr', err);
+      });
+  };
+
+  const onConfirmDate = (date: any) => {
+    setOpen(false);
+    setDate(date);
+    setSelectedDate(
+      [date.getMonth() + 1, '/', date.getDate(), '/', date.getFullYear()].join(
+        '',
+      ),
+    );
+  };
+
+  const calendarClosed = () => {
+    setOpen(false);
+  };
 
   return (
     <SafeAreaView style={styles.Container}>
-      <StatusBar barStyle="light-content" translucent={true} />
       <View style={styles.ModalViewStyle}>
-        <Modal isVisible={openModal} style={{margin: 0,}}>
+        <Modal isVisible={openModal} style={{margin: 0}}>
           <ModalScreen
             setSelectedIdentity={setSelectedIdentity}
+            selectedIdentity={selectedIdentity}
             setOpenModal={setOpenModal}
             openModal={openModal}
           />
         </Modal>
-        <Text style={styles.header}>
-          {'Hi  John! \nTell us about yourself.'}
-        </Text>
+        <Text style={styles.header}>{STRINGS.LABEL.USER_TELL_US_HEADER}</Text>
       </View>
-      <KeyboardAwareScrollView>
+      <KeyboardAwareScrollView extraHeight={180}>
         <View style={styles.imgContainer}>
-          <TouchableOpacity
-            onPress={() =>
-              ImagePicker.openPicker({
-                width: 300,
-                height: 400,
-                cropping: true,
-              })
-                .then(image => {
-                  console.log('image path', image);
-                  setCoverImage(image.path);
-                })
-                .catch(err => {
-                  console.log('ImageErr', err);
-                })
-            }>
+          <TouchableOpacity onPress={coverImagePicker}>
             <ImageBackground style={styles.imgCover} source={images.cover}>
               {coverimage.length > 0 && (
                 <Image
@@ -72,15 +116,7 @@ export default function EditProfileScreen() {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.touchableImagePickerStyle}
-            onPress={() =>
-              ImagePicker.openPicker({cropping: true})
-                .then(image => {
-                  setProfileImage(image.path);
-                })
-                .catch(err => {
-                  console.log('ImageErr', err);
-                })
-            }>
+            onPress={profileImagePicker}>
             <ImageBackground style={styles.imgProfile} source={images.profile}>
               {profileImage.length > 0 && (
                 <Image
@@ -95,8 +131,8 @@ export default function EditProfileScreen() {
 
         <View style={styles.customTextView}>
           <CustomTextInput
-            label="Change your Username"
-            placeholder="Change your Username"
+            label={STRINGS.LABEL.CHANGE_YOUR_USERNAME}
+            placeholder={STRINGS.LABEL.CHANGE_YOUR_USERNAME}
             right={() => (
               <TouchableOpacity style={styles.edit}>
                 <Image style={styles.editImageStyle} source={images.edit} />
@@ -114,7 +150,7 @@ export default function EditProfileScreen() {
             />
           </TouchableOpacity>
           <CustomTextInput
-            label={'Date of Birth'}
+            label={STRINGS.LABEL.DOB}
             value={selectedDate}
             right={() => (
               <TouchableOpacity
@@ -129,37 +165,31 @@ export default function EditProfileScreen() {
                   mode="date"
                   open={open}
                   date={date}
-                  onConfirm={date => {
-                    setOpen(false);
-                    setDate(date);
-                    setSelectedDate(
-                      [
-                        date.getMonth() + 1,
-                        '/',
-                        date.getDate(),
-                        '/',
-                        date.getFullYear(),
-                      ].join(''),
-                    );
-                  }}
-                  onCancel={() => {
-                    setOpen(false);
-                  }}
+                  onConfirm={onConfirmDate}
+                  onCancel={calendarClosed}
                 />
               </TouchableOpacity>
             )}
           />
-          <CustomTextInput label="Zipcode" />
-          <CustomTextInput label="Bio" multiline={true} />
-          <CustomTextInput label="Referrel Code" />
-          <CustomTextInput label="Sport Watch" multiline={true} />
+          <CustomTextInput label={STRINGS.LABEL.ZIPCODE} />
+          <CustomTextInput label={STRINGS.LABEL.BIO} multiline={true} />
+          <CustomTextInput label={STRINGS.LABEL.REFERRAL_CODE} />
+          <TouchableOpacity
+            style={styles.identityView}
+            onPress={() => {
+              dispatch(sportsApi(verify_Otp_Data));
+              navigation.navigate('sportScreen');
+            }}>
+            <Text style={styles.identityTxt}>{'Sports I Watch'}</Text>
+          </TouchableOpacity>
         </View>
       </KeyboardAwareScrollView>
-      <View>
+      {/* <View>
         <TouchableOpacity style={styles.SubmitButtonTouchable}>
-          <Text style={styles.SubmitButtonStyle}>{'SUBMIT'}</Text>
+          <Text style={styles.SubmitButtonStyle}>{STRINGS.LABEL.SUBMIT}</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
+      <CustomButton label={STRINGS.LABEL.SUBMIT} />
     </SafeAreaView>
   );
 }

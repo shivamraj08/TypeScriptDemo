@@ -1,14 +1,13 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
 import NavigationScreen from './src/routes';
-import EditProfileScreen from './src/screens/editProfileScreen';
-import CongratsModal from './src/screens/modals/congratsModal';
-import SignUpScreen from './src/screens/signUpScreen';
-import TermsOfUse from './src/screens/termsOfUseScreen';
-import VerificationScreen from './src/screens/verificationCode';
 
 export default function App() {
   return (
-    <NavigationScreen/>
-    
-  );
+    <Provider store={store}>
+      <NavigationScreen/>
+    </Provider>
+    // <SignInScreen/>
+  )
 }

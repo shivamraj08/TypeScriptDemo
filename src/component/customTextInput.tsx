@@ -1,6 +1,8 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {TextInput} from 'react-native-paper';
+import { vh } from '../utils/dimensions';
+import COLOR from '../utils/color';
 
 interface PROPS {
   right?: any;
@@ -24,17 +26,17 @@ export default function CustomTextInput(props: PROPS) {
         right={null}
         secureTextEntry={securetextentry}
         keyboardType={keyboardType}
-        activeOutlineColor="white"
-        outlineColor="white"
+        activeOutlineColor={COLOR.WHITE}
+        outlineColor={COLOR.WHITE}
         mode="outlined"
         theme={{
           colors: {
-            primary: '#FFF',
+            primary: COLOR.WHITE,
             text: '#398AB9',
-            placeholder: 'white',
+            placeholder: COLOR.WHITE,
           },
         }}
-        style={styles.txtInput}
+        style={styles.textInputStyle}
       />
       {right != undefined ? right() : null}
       {error && <Text style={styles.errMsg}>{error}</Text>}
@@ -43,15 +45,15 @@ export default function CustomTextInput(props: PROPS) {
 }
 
 const styles = StyleSheet.create({
-  txtInput: {
-    height: 48,
+  textInputStyle: {
+    height: vh(48),
     width: '100%',
-    backgroundColor: 'black',
-    marginBottom: 20,
+    backgroundColor: COLOR.BLACK,
+    marginBottom: vh(10),
   },
   errMsg: {
     fontSize: 12,
-    color: '#FF6258',
+    color: COLOR.RED,
     fontWeight: '400',
   },
 });
