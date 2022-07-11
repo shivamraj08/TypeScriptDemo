@@ -91,7 +91,7 @@ export default function VerificationScreen({navigation}: any) {
           </Text>
         </View>
         <View style={styles.tagLineView}>
-          <Text style={styles.numberTextStyle}>{route.params.PhoneNo}</Text>
+          <Text style={styles.numberTextStyle}>{route?.params?.phoneNo}</Text>
           <TouchableOpacity>
             <Text style={styles.editButtonStyle}>{STRINGS.LABEL.EDIT}</Text>
           </TouchableOpacity>

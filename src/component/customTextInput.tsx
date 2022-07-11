@@ -18,16 +18,18 @@ interface PROPS {
 }
 
 export default function CustomTextInput(props: PROPS) {
-  let {right, error, keyboardType = 'default', securetextentry,} = props;
+  let {right, error, keyboardType = 'default', securetextentry,placeholder,label} = props;
   return (
     <View>
       <TextInput
         {...props}
         right={null}
+        label={label}
         secureTextEntry={securetextentry}
         keyboardType={keyboardType}
         activeOutlineColor={COLOR.WHITE}
         outlineColor={COLOR.WHITE}
+        placeholder={placeholder}
         mode="outlined"
         theme={{
           colors: {

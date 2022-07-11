@@ -28,6 +28,7 @@ export default function SignUpScreen() {
   const [password, setPassword] = React.useState('');
   const [passwordError, setPasswordError] = React.useState('');
   const [hiddenPassword, showPassword] = React.useState(true);
+  // const [enabled,setEnabled]=React.useState(false);
   const navigation = useNavigation<any>();
   const dispatch = useDispatch<any>();
   const {sign_Up_Data} = useSelector((store: any) => store.SignUpReducer);
@@ -40,9 +41,10 @@ export default function SignUpScreen() {
         password,
         phoneNo,
         (resp: any) => {
+          console.log("Api cal")
           if (resp?.data?.statusCode == 200) {
-            navigation.navigate('OtpVerify', {PhoneNo: phoneNo});
-          }
+            navigation.navigate('OtpVerify', {PhoneNo: phoneNo}); 
+                }
         },
         (error: any) => {
           Alert.alert('axiosError', error);
@@ -53,10 +55,15 @@ export default function SignUpScreen() {
 
   const handle = () => {
     if (
-      nameValidError.length > 0 &&
-      emailValidError.length > 0 &&
-      phoneNoError.length > 0 &&
-      passwordError.length > 0
+      nameValidError == '' &&
+      name.length > 0 &&
+      emailValidError == '' &&
+      email.length > 0 &&
+      phoneNoError == '' &&
+      password.length > 0 &&
+      passwordError == '' &&
+      phoneNo.length > 0 &&
+      checkUncheck
     ) {
       return true;
     } else {
@@ -214,7 +221,7 @@ export default function SignUpScreen() {
         <TouchableOpacity
           activeOpacity={0.6}
           onPress={Sign_Up_Api_Hit}
-          disabled={!handle}
+          disabled={!handle()}
           style={
             !handle()
               ? {
