@@ -8,7 +8,7 @@ import {normalize} from '../../utils/dimensions';
 
 export default function CongratsModal(props: any) {
   const {setModalOpen, modalOpen} = props;
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
   const modalClosed = () => {
     setModalOpen(!modalOpen);

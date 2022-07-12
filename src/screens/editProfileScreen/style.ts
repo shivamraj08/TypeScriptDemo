@@ -1,10 +1,11 @@
 import {StyleSheet} from 'react-native';
+import COLOR from '../../utils/color';
 import {normalize} from '../../utils/dimensions';
 
 export const styles = StyleSheet.create({
   Container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: COLOR.BLACK,
   },
   imgContainer: {
     height: normalize(310),
@@ -18,7 +19,7 @@ export const styles = StyleSheet.create({
     height: normalize(218),
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: 'white',
+    borderColor: COLOR.WHITE,
     bottom: normalize(20),
     resizeMode: 'contain',
     alignItems: 'center',
@@ -28,7 +29,7 @@ export const styles = StyleSheet.create({
     width: normalize(101),
     height: normalize(101),
     borderWidth: 1,
-    borderColor: 'white',
+    borderColor: COLOR.WHITE,
     bottom: normalize(10),
     borderRadius: 5,
   },
@@ -37,13 +38,13 @@ export const styles = StyleSheet.create({
     height: normalize(100),
     resizeMode: 'cover',
     borderWidth: 1,
-    borderColor: 'white',
+    borderColor: COLOR.WHITE,
     borderRadius: 5,
   },
   header: {
     fontSize: 28,
     fontWeight: '900',
-    color: 'white',
+    color: COLOR.WHITE,
     marginLeft: normalize(15),
     marginTop: normalize(40),
     fontStyle: 'italic',
@@ -74,7 +75,7 @@ export const styles = StyleSheet.create({
   submitText: {
     fontSize: 30,
     fontWeight: '400',
-    backgroundColor: 'black',
+    backgroundColor: COLOR.BLACK,
   },
   body: {
     borderRadius: 1,
@@ -100,7 +101,7 @@ export const styles = StyleSheet.create({
   selectView: {
     borderWidth: 1,
     borderRadius: 6,
-    borderColor: 'white',
+    borderColor: COLOR.WHITE,
     marginTop: normalize(10),
     flexDirection: 'row',
     height: normalize(48),
@@ -111,7 +112,7 @@ export const styles = StyleSheet.create({
     paddingVertical: normalize(10),
   },
   selectIdentityText: {
-    color: 'white',
+    color: COLOR.WHITE,
     fontSize: 16,
   },
   selectedCoverImage: {
@@ -119,7 +120,7 @@ export const styles = StyleSheet.create({
     height: normalize(218),
     borderWidth: 1,
     borderRadius: 5,
-    borderColor: 'white',
+    borderColor: COLOR.WHITE,
   },
   touchableImagePickerStyle: {
     position: 'absolute',
@@ -134,7 +135,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '900',
     textAlign: 'center',
-    color: 'black',
+    color: COLOR.BLACK,
     marginBottom: normalize(25),
     top: normalize(10),
     fontStyle: 'italic',
@@ -159,20 +160,19 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'flex-end',
     paddingRight: normalize(19),
-    paddingTop: normalize(17),
   },
   identityView: {
     height: normalize(48),
-    width: normalize(328),
+    width: normalize(346),
     borderWidth: 1,
     borderRadius: normalize(5),
     marginVertical: normalize(10),
-    borderColor: 'white',
+    borderColor: COLOR.WHITE,
     padding: normalize(15),
     alignSelf: 'center',
   },
   identityTxt: {
-    color: 'white',
+    color: COLOR.WHITE,
     fontSize: 14,
   },
 });

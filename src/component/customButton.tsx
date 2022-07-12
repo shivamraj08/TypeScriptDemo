@@ -30,5 +30,6 @@ const styles = StyleSheet.create({
     marginLeft: normalize(15),
     borderRadius: 5,
     borderWidth: 1,
+    marginBottom: normalize(10)
   },
 });

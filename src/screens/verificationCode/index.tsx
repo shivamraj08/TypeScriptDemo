@@ -1,10 +1,4 @@
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import {Text,View,Image,TouchableOpacity,TextInput,} from 'react-native';
 import React, {useRef} from 'react';
 import {images} from '../../utils/images';
 import Modal from 'react-native-modal';
@@ -16,8 +10,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import Verify_Otp_Api from './action';
 import CustomButton from '../../component/customButton';
 import CustomInActiveButton from '../../component/customInactiveButton';
+import CustomBackButton from '../../component/customBackButton';
 
-export default function VerificationScreen({navigation}: any) {
+export default function VerificationScreen() {
   const first = useRef<any>(null);
   const second = useRef<any>(null);
   const third = useRef<any>(null);
@@ -36,8 +31,6 @@ export default function VerificationScreen({navigation}: any) {
     dispatch(Verify_Otp_Api(pin, sign_Up_Data.userId, sign_Up_Data.phoneNo));
     setModalOpen(!modalOpen);
   };
-
-  const goBackScreen = () => navigation.goBack();
 
   const secondTextFocus = (text: any) => {
     setPin(pin + text);
@@ -78,10 +71,8 @@ export default function VerificationScreen({navigation}: any) {
       <Modal isVisible={modalOpen}>
         <CongratsModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       </Modal>
+        <CustomBackButton />
       <View style={styles.body}>
-        <TouchableOpacity onPress={goBackScreen}>
-          <Image style={styles.backArrowStyle} source={images.backarrow} />
-        </TouchableOpacity>
         <Text style={styles.verificationTextStyle}>
           {STRINGS.LABEL.VERIFICATION}
         </Text>
@@ -91,7 +82,7 @@ export default function VerificationScreen({navigation}: any) {
           </Text>
         </View>
         <View style={styles.tagLineView}>
-          <Text style={styles.numberTextStyle}>{route?.params?.phoneNo}</Text>
+          <Text style={styles.numberTextStyle}>{route?.params?.PhoneNo}</Text>
           <TouchableOpacity>
             <Text style={styles.editButtonStyle}>{STRINGS.LABEL.EDIT}</Text>
           </TouchableOpacity>

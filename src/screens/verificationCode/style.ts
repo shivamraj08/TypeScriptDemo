@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     backgroundColor: COLOR.BLACK,
   },
   body: {
-    marginTop: normalize(60),
+    marginTop: normalize(20),
   },
   textInputStyle: {
     height: normalize(48),

@@ -44,10 +44,12 @@ export const styles = StyleSheet.create({
     width: normalize(104),
     height: normalize(112),
     marginTop: normalize(20),
-    backgroundColor: '#121212',
+    // backgroundColor: '#121212'
+    backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
+    marginLeft:normalize(15)
   },
   sportsImg: {
     height: normalize(50),

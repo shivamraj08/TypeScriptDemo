@@ -1,48 +1,60 @@
-import {Text, TextInput, View, Image, FlatList} from 'react-native';
-import React from 'react';
+import {View, FlatList, TouchableOpacity} from 'react-native';
+import React, { useCallback } from 'react';
 import CustomBackButton from '../../component/customBackButton';
-import {images} from '../../utils/images';
 import {useSelector} from 'react-redux';
-import COLOR from '../../utils/color';
 import {styles} from './style';
-import {STRINGS} from '../../utils/strings';
+import CustomSearchButton from '../../component/customSearchButton';
+import CustomSportSelection from '../../component/customSportSelection';
+import CustomButton from '../../component/customButton';
+import CustomInActiveButton from '../../component/customInactiveButton';
+import { useRoute } from '@react-navigation/native';
 
-export default function SportScreen() {
-  const DATA = useSelector((store: any) => store.EditProfileReducer);
-  // console.log('////sport data is here', DATA);
+export default function SportScreen(props: any) {
+
+  const {callback} = useRoute().params;
+
+  // const {choose, setChoose} = props;
+  const {sports} = useSelector((store: any) => store.EditProfileReducer);
+  const [selectedSports, setselectedSports] = React.useState([])
+  console.log('////sport data is here', sports);
+
+  React.useEffect(()=>{
+    callback(selectedSports)
+  },[selectedSports])
+
+  const helper =useCallback((item :any)=>{
+    const index = selectedSports.findIndex(x => x == item);
+   console.log('selectedSports index', index)
+
+   if(index == -1){
+    setselectedSports([...selectedSports, item])
+   }else{
+     selectedSports.splice(index, 1)
+     setselectedSports([...selectedSports])
+   }
+  }, [selectedSports])
   const renderItems = ({item}: any) => {
     // console.log('+++++++++////Item There', item);
+    console.log("selectedSports", selectedSports)
     return (
-      <View style={styles.renderContainer}>
-        <Image style={styles.sportsImg} source={{uri: item?.sportImg}} />
-        <Text style={styles.sportText}>{item.sportName}</Text>
-      </View>
+          <CustomSportSelection img={item.sportImg} imgText={item.sportName} helper = {helper}/>
     );
   };
 
   return (
     <View style={styles.container}>
       <CustomBackButton />
-      <View style={styles.body}>
-        <Text style={styles.sportTextHeader}>
-          {STRINGS.LABEL.WHICH_SPORTS_PLAY}
-        </Text>
-        <View style={styles.textInputViewStyle}>
-          <Image style={styles.searchImgStyle} source={images.searchImg} />
-          <TextInput
-            style={styles.textInputStyle}
-            placeholder={STRINGS.LABEL.SEARCH_SPORTS}
-            placeholderTextColor={COLOR.WHITE}
-          />
-        </View>
-        <FlatList
-          data={DATA.sports}
-          renderItem={renderItems}
-          numColumns={3}
-          bounces={false}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
+      <CustomSearchButton />
+      <FlatList
+        data={sports}
+        renderItem={renderItems}
+        numColumns={3}
+        bounces={false}
+        showsVerticalScrollIndicator={false}
+        // ItemSeparatorComponent={}
+      />
+     { selectedSports.length>0?<CustomButton label="CONTINUE" />:
+      <CustomInActiveButton label = "CONTINUE" disabled={true} />}
     </View>
   );
 }

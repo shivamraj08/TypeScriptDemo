@@ -9,7 +9,7 @@ import CustomButton from '../../component/customButton';
 
 export default function SelectScreen(props: any) {
   const navigation = useNavigation();
-  const [chooseIdentity, setChooseIdentity] = React.useState(
+  const [chooseIdentity, setChooseIdentity] = React.useState<any>(
     'Select Your Identity',
   );
   const handleAthlete = () => {

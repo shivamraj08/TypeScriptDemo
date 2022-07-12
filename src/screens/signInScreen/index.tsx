@@ -56,7 +56,7 @@ export default function SignInScreen() {
   };
 
   const handleSignInButton = () => {
-    if (email.length > 0 && password.length > 0) {
+    if (email.length > 0 && emailValidError == '' && password.length > 0 && passwordError == '') {
       return true;
     } else {
       return false;

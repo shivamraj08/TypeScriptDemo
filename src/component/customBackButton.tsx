@@ -20,8 +20,7 @@ const styles = StyleSheet.create({
     backArrowStyle: {
         height: normalize(20),
         width: normalize(20),
-        marginLeft: normalize(20),
-        marginBottom: normalize(20),
+        marginLeft: normalize(15),
         resizeMode: 'contain',
         marginTop: normalize(60),
       },

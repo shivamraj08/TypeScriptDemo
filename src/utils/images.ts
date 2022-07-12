@@ -26,5 +26,6 @@ export const images = {
   splashMan:require('../assests/images/splashManImg.png'),
   five:require('../assests/images/Union.png'),
   backgroundSplash:require('../assests/images/backgroundSplashImg.png'),
-  searchImg:require('../assests/images/searchImg.png')
+  searchImg:require('../assests/images/searchImg.png'),
+  rightCheck:require('../assests/images/rightCheck.png')
 };

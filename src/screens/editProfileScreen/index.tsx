@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
@@ -32,6 +32,7 @@ export default function EditProfileScreen() {
   const [selectedIdentity, setSelectedIdentity] = React.useState(
     'Select Your Identity',
   );
+  const [selectedSports, setSelectedSports] = useState([])
   const verify_Otp_Data = useSelector((store: any) => store.VerifyOtpReducer);
   console.log('--------->', verify_Otp_Data);
   const dispatch = useDispatch<any>();
@@ -171,24 +172,26 @@ export default function EditProfileScreen() {
               </TouchableOpacity>
             )}
           />
-          <CustomTextInput label={STRINGS.LABEL.ZIPCODE} />
+          {/* <CustomTextInput label={STRINGS.LABEL.ZIPCODE} onPress={()=>{navigation.navigate('zipCodeScreen')}} /> */}
+          <TouchableOpacity
+            style={styles.identityView}
+            onPress={() => {
+              navigation.navigate('zipCodeScreen',);
+            }}>
+            <Text style={styles.identityTxt}>{'ZipCode'}</Text>
+          </TouchableOpacity>
           <CustomTextInput label={STRINGS.LABEL.BIO} multiline={true} />
           <CustomTextInput label={STRINGS.LABEL.REFERRAL_CODE} />
           <TouchableOpacity
             style={styles.identityView}
             onPress={() => {
               dispatch(sportsApi(verify_Otp_Data));
-              navigation.navigate('sportScreen');
+              navigation.navigate('SportScreen', {callback:(par : any)=>{setSelectedSports(par)}});
             }}>
-            <Text style={styles.identityTxt}>{'Sports I Watch'}</Text>
+            <Text style={styles.identityTxt}>{selectedSports.length<0?'Sports I Watch':JSON.stringify(selectedSports)}</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAwareScrollView>
-      {/* <View>
-        <TouchableOpacity style={styles.SubmitButtonTouchable}>
-          <Text style={styles.SubmitButtonStyle}>{STRINGS.LABEL.SUBMIT}</Text>
-        </TouchableOpacity>
-      </View> */}
       <CustomButton label={STRINGS.LABEL.SUBMIT} />
     </SafeAreaView>
   );

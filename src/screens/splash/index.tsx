@@ -17,8 +17,8 @@ function SplashScreen(): any {
   }, [fadeAnimation]);
   const navigation = useNavigation<any>();
   setTimeout(() => {
-    navigation.replace('SignupProfile');
-  }, 3000);
+    navigation.replace('SignInScreen');
+  }, 4000);
   return (
     <View style={styles.container}>
       <StatusBar hidden={true} />

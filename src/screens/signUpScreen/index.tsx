@@ -16,6 +16,7 @@ import Api_SignUp from './action';
 import CustomButton from '../../component/customButton';
 import COLOR from '../../utils/color';
 import {useNavigation} from '@react-navigation/native';
+import CustomBackButton from '../../component/customBackButton';
 
 export default function SignUpScreen() {
   const [checkUncheck, setCheckUncheck] = React.useState(false);
@@ -41,10 +42,10 @@ export default function SignUpScreen() {
         password,
         phoneNo,
         (resp: any) => {
-          console.log("Api cal")
+          console.log('Api cal');
           if (resp?.data?.statusCode == 200) {
-            navigation.navigate('OtpVerify', {PhoneNo: phoneNo}); 
-                }
+            navigation.navigate('OtpVerify', {PhoneNo: phoneNo});
+          }
         },
         (error: any) => {
           Alert.alert('axiosError', error);
@@ -123,7 +124,7 @@ export default function SignUpScreen() {
   };
 
   const signInScreen = () => {
-    navigation.navigate('signInScreen');
+    navigation.goBack("signInScreen");
   };
   const onChangeTextName = (value: any) => {
     setName(value);
@@ -147,7 +148,7 @@ export default function SignUpScreen() {
 
   return (
     <View style={styles.signUpContainer}>
-      <Image source={images.backarrow} style={styles.backArrowStyle} />
+      <CustomBackButton/>
       <Text style={styles.createTextStyle}>{STRINGS.LABEL.CREATE_ACCOUNT}</Text>
       <Text style={styles.taglineStyle}>{STRINGS.LABEL.SIGN_UP_TAGLINE}</Text>
       <KeyboardAwareScrollView>

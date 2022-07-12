@@ -44,7 +44,9 @@ export const STRINGS = {
     SIGN_UP:"Sign Up",
     SIGN__IN:"Sign In",
     SEARCH_SPORTS:"Search Sports",
-    WHICH_SPORTS_PLAY:"What sport do you like to Play?"
+    WHICH_SPORTS_PLAY:"What sport do you like to Play?",
+    SPLASH:"splash",
+
   },
   TermsofUse: {
     Terms1:
@@ -57,6 +59,8 @@ export const STRINGS = {
     EDIT_UP_PROFILE: 'EditProfile',
     OTP_VERIFY: 'OtpVerify',
     TERMS_SCREEN: 'TermsScreen',
+    SIGN_IN_SCREEN : "SignInScreen",
+    SPORT:"SportScreen",
   },
   ERROR_MSG: {
     NAME: {
