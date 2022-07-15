@@ -18,7 +18,7 @@ interface PROPS {
 }
 
 export default function CustomTextInput(props: PROPS) {
-  let {right, error, keyboardType = 'default', securetextentry,placeholder,label} = props;
+  let {right, error, keyboardType = 'default', securetextentry,placeholder,label,} = props;
   return (
     <View>
       <TextInput

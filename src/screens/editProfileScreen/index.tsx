@@ -1,11 +1,5 @@
-import React, { useState } from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  ImageBackground,
-} from 'react-native';
+import React from 'react';
+import {Text,View,TouchableOpacity,Image,ImageBackground, FlatList,} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -21,6 +15,7 @@ import {useNavigation} from '@react-navigation/native';
 import CustomButton from '../../component/customButton';
 import {useDispatch, useSelector} from 'react-redux';
 import {sportsApi} from './action';
+import ZipCode from '../zipCodeScreen';
 
 export default function EditProfileScreen() {
   const [coverimage, setCoverImage] = React.useState('');
@@ -32,9 +27,12 @@ export default function EditProfileScreen() {
   const [selectedIdentity, setSelectedIdentity] = React.useState(
     'Select Your Identity',
   );
-  const [selectedSports, setSelectedSports] = useState([])
-  const verify_Otp_Data = useSelector((store: any) => store.VerifyOtpReducer);
-  console.log('--------->', verify_Otp_Data);
+  const [zipcode, setzipcode] = React.useState('');
+  const [zipcodeModal, setZipcodeModal] = React.useState(false);
+  // console.log('werty====>',zipcode)
+  const [selectedSports, setSelectedSports] = React.useState([]);
+  const {verify_Otp_Data} = useSelector((store: any) => store.VerifyOtpReducer);
+  let usernameResult=verify_Otp_Data.data.username;
   const dispatch = useDispatch<any>();
 
   const params = useRoute<any>();
@@ -89,6 +87,10 @@ export default function EditProfileScreen() {
     setOpen(false);
   };
 
+  const zipCallback = (zip: any) => {
+    setzipcode(zip)
+  }
+
   return (
     <SafeAreaView style={styles.Container}>
       <View style={styles.ModalViewStyle}>
@@ -98,6 +100,12 @@ export default function EditProfileScreen() {
             selectedIdentity={selectedIdentity}
             setOpenModal={setOpenModal}
             openModal={openModal}
+          />
+        </Modal>
+        <Modal isVisible={zipcodeModal} style={styles.zipCodeStyleModal}>
+          <ZipCode
+            callback={zipCallback}
+            setZipcodeModal={setZipcodeModal}
           />
         </Modal>
         <Text style={styles.header}>{STRINGS.LABEL.USER_TELL_US_HEADER}</Text>
@@ -134,6 +142,7 @@ export default function EditProfileScreen() {
           <CustomTextInput
             label={STRINGS.LABEL.CHANGE_YOUR_USERNAME}
             placeholder={STRINGS.LABEL.CHANGE_YOUR_USERNAME}
+            value={usernameResult}
             right={() => (
               <TouchableOpacity style={styles.edit}>
                 <Image style={styles.editImageStyle} source={images.edit} />
@@ -176,19 +185,53 @@ export default function EditProfileScreen() {
           <TouchableOpacity
             style={styles.identityView}
             onPress={() => {
-              navigation.navigate('zipCodeScreen',);
+              // navigation.navigate('zipCodeScreen',{zipcode:setzipcode});
+              setZipcodeModal(!zipcodeModal,);
             }}>
-            <Text style={styles.identityTxt}>{'ZipCode'}</Text>
+            <Text style={styles.identityTxt}>
+              {zipcode?.length <= 0 ? 'ZipCode*' : zipcode}
+            </Text>
           </TouchableOpacity>
           <CustomTextInput label={STRINGS.LABEL.BIO} multiline={true} />
           <CustomTextInput label={STRINGS.LABEL.REFERRAL_CODE} />
           <TouchableOpacity
-            style={styles.identityView}
+            style={styles.sportsView}
             onPress={() => {
               dispatch(sportsApi(verify_Otp_Data));
-              navigation.navigate('SportScreen', {callback:(par : any)=>{setSelectedSports(par)}});
+              navigation.navigate('SportScreen', {
+                callback: (par: any) => {
+                  setSelectedSports(par);
+                },
+              });
+              console.log('selected Sports are here', setSelectedSports);
             }}>
-            <Text style={styles.identityTxt}>{selectedSports.length<0?'Sports I Watch':JSON.stringify(selectedSports)}</Text>
+              {selectedSports?.length <= 0
+                ? <Text style={styles.identityTxt}>{'Sports I Watch'}</Text>
+                : 
+                selectedSports.map(element => {
+                  return (
+                    <View style={styles.elementTouchStyle}>
+                      <Text style={styles.elementTextStyle}>
+                        {element}
+                      </Text>
+                      <TouchableOpacity>
+                        <Image
+                          style={styles.crossImageStyle}
+                          source={images.crossButton}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  );
+                })
+                 }
+            <TouchableOpacity
+            // onPress={()=>{navigation.navigate('SportScreen'),{selectedSports}}}
+            >
+                  { selectedSports.length>0 ?
+                  <Text style={styles.addNewButtonStyle}>
+                  {"+ Add New"}
+                  </Text>:null}
+            </TouchableOpacity>
           </TouchableOpacity>
         </View>
       </KeyboardAwareScrollView>

@@ -5,7 +5,8 @@ import COLOR from '../utils/color'
 import { normalize } from '../utils/dimensions'
 import { images } from '../utils/images'
 
-export default function CustomSearchButton() {
+export default function CustomSearchButton(props:any) {
+  const{onchangeText}=props;
   return (
     <View style={styles.body}>
         <Text style={styles.sportTextHeader}>
@@ -17,6 +18,7 @@ export default function CustomSearchButton() {
             style={styles.textInputStyle}
             placeholder={STRINGS.LABEL.SEARCH_SPORTS}
             placeholderTextColor={COLOR.WHITE}
+            onChangeText={onchangeText}
           />
         </View> 
       </View>  

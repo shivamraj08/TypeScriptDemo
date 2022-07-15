@@ -27,7 +27,7 @@ export default function NavigationScreen() {
         <Stack.Screen name={STRINGS.SCREEN.EDIT_UP_PROFILE} component={EditProfileScreen} />
         <Stack.Screen name={STRINGS.SCREEN.SPORT} component={SportScreen} />
         <Stack.Screen name={STRINGS.SCREEN.TERMS_SCREEN} component={TermsOfUse} />
-        <Stack.Screen name="zipCodeScreen" component={ZipCodeScreen} />
+        <Stack.Screen name={STRINGS.SCREEN.ZIPCODE} component={ZipCodeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

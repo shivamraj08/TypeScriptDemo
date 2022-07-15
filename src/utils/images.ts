@@ -27,5 +27,8 @@ export const images = {
   five:require('../assests/images/Union.png'),
   backgroundSplash:require('../assests/images/backgroundSplashImg.png'),
   searchImg:require('../assests/images/searchImg.png'),
-  rightCheck:require('../assests/images/rightCheck.png')
+  rightCheck:require('../assests/images/rightCheck.png'),
+  crossButton:require('../assests/images/ic_cross.png'),
+  lineSeparate:require('../assests/images/lineSeparator.png'),
+  downArrow:require('../assests/images/downArrow.png'),
 };

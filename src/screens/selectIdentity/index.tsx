@@ -8,7 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 import CustomButton from '../../component/customButton';
 
 export default function SelectScreen(props: any) {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const [chooseIdentity, setChooseIdentity] = React.useState<any>(
     'Select Your Identity',
   );
@@ -35,7 +35,7 @@ export default function SelectScreen(props: any) {
       <View>
         <Text style={styles.selectTextStyle}>{'Who are you?'}</Text>
       </View>
-      <TouchableOpacity onPress={handleFan}>
+      <TouchableOpacity onPress={handleFan} style={styles.touchableFan}>
         <Text style={styles.fanTextStyle}>{STRINGS.LABEL.FAN}</Text>
         <Image
           style={{
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   modalimage: {
     height: normalize(104),
     width: normalize(357),
-    marginTop: normalize(20),
+    marginVertical: normalize(10),
     borderRadius: 5,
     borderColor: 'red',
     borderWidth: 3,
@@ -139,5 +139,10 @@ const styles = StyleSheet.create({
     marginBottom: normalize(25),
     top: normalize(10),
     fontStyle: 'italic',
+  },
+  touchableFan: {
+    height: normalize(104),
+    width: normalize(357),
+    marginVertical: normalize(20),
   },
 });

@@ -17,6 +17,9 @@ import CustomButton from '../../component/customButton';
 import COLOR from '../../utils/color';
 import {useNavigation} from '@react-navigation/native';
 import CustomBackButton from '../../component/customBackButton';
+import CountryModal from '../modals/countryModal';
+import Modal from 'react-native-modal'
+import { normalize } from '../../utils/dimensions';
 
 export default function SignUpScreen() {
   const [checkUncheck, setCheckUncheck] = React.useState(false);
@@ -29,8 +32,9 @@ export default function SignUpScreen() {
   const [password, setPassword] = React.useState('');
   const [passwordError, setPasswordError] = React.useState('');
   const [hiddenPassword, showPassword] = React.useState(true);
-  // const [enabled,setEnabled]=React.useState(false);
+  const [country,setCountry]=React.useState(false);
   const navigation = useNavigation<any>();
+  const [dialcode,setDialcode]=React.useState<string>("+1");
   const dispatch = useDispatch<any>();
   const {sign_Up_Data} = useSelector((store: any) => store.SignUpReducer);
 
@@ -131,8 +135,8 @@ export default function SignUpScreen() {
     validName(value);
   };
   const onChangeTextPhone = (value: any) => {
-    setPhoneNo(value);
-    handleValidPhoneNo(value);
+    setPhoneNo(value.trim());
+    handleValidPhoneNo(value.trim());
   };
   const onChangeTextEmail = (value: any) => {
     setEmail(value);
@@ -145,9 +149,21 @@ export default function SignUpScreen() {
   const toggle = () => {
     showPassword(!hiddenPassword);
   };
+  const countryChoose = () => {
+    console.log("++++++>>>>",country)
+    setCountry(!country)
+  }
 
   return (
     <View style={styles.signUpContainer}>
+      <Modal isVisible={country} style={styles.countryStyleModal}>
+        <CountryModal
+        country={country}
+        setCountry={setCountry}
+         dialcode={dialcode}
+         setDialcode={setDialcode}
+        />
+      </Modal>
       <CustomBackButton/>
       <Text style={styles.createTextStyle}>{STRINGS.LABEL.CREATE_ACCOUNT}</Text>
       <Text style={styles.taglineStyle}>{STRINGS.LABEL.SIGN_UP_TAGLINE}</Text>
@@ -161,12 +177,29 @@ export default function SignUpScreen() {
           <Text style={styles.validErrorStyle}>
             {nameValidError ? nameValidError : null}
           </Text>
-          <CustomTextInput
-            keyboardType={'number-pad'}
-            label={STRINGS.LABEL.MOBILE_NUMBER}
-            value={phoneNo}
-            onChangeText={onChangeTextPhone}
-          />
+          <TouchableOpacity
+            style={styles.countryTouchStyle}
+            onPress={countryChoose}>
+            <Text style={styles.selectedCountry}>{dialcode}</Text>
+            <Image
+              style={styles.downImgStyle}
+              source={images.downArrow}
+            />
+            <Image
+              style={styles.lineImgStyle}
+              source={images.lineSeparate}
+            />
+          </TouchableOpacity>
+          <View
+            style={styles.mobileTextView}>
+            <CustomTextInput
+              label="Mobile Number"
+              placeholder={STRINGS.LABEL.MOBILE_NUMBER}
+              value={"                "+phoneNo}
+              onChangeText={onChangeTextPhone}
+              keyboardType="number-pad"
+            />
+          </View>
           <Text style={styles.validErrorStyle}>
             {phoneNoError ? phoneNoError : null}
           </Text>

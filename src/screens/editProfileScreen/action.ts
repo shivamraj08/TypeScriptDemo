@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const sportsApi = (verify_Otp_Data: any) => {
-  const token = verify_Otp_Data.verify_Otp_Data.data.authToken;
+  const token = verify_Otp_Data.data.authToken;
   //  console.log(token)
   const {authToken} = verify_Otp_Data;
   return (dispatch: any) => {
@@ -25,9 +25,14 @@ export const sportsApi = (verify_Otp_Data: any) => {
       });
   };
 };
-export const zipCodeAction = (text: string) => {
-  console.log(text);
-  return (dispatch: any) => {
+export const zipCodeAction = (text: string, page: number) => {
+  console.log('tex', text, 'page:', page);
+  return (dispatch: any, getState: any) => {
+    const {
+      EditProfileReducer: {zipCodeData},
+    } = getState();
+    console.log('masudgfuayshdff', zipCodeData);
+
     const $https = axios.create({
       baseURL: 'https://fivestardevapi.appskeeper.in/api/v1',
       headers: {
@@ -35,12 +40,17 @@ export const zipCodeAction = (text: string) => {
         Accept: 'application/json',
       },
     });
-
+    
     $https
-      .get(`/zipcode-list?&search=${text}&page=1`)
+      .get(`zipcode-list?page=${page}&limit=15&search=${text}`)
       .then(resp => {
         console.log('zipcode resp', resp);
-        dispatch({type: 'SET_ZIPCODE', payload: resp.data.data});
+        if (page > 1 && zipCodeData?.length > 0) {
+          dispatch({
+            type: 'SET_ZIPCODE',
+            payload: [...zipCodeData, ...resp.data.data.result],
+          });
+        } else dispatch({type: 'SET_ZIPCODE', payload: resp.data.data.result});
       })
       .catch(error => {
         console.log('sports', error);

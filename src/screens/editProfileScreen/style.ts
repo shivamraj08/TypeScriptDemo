@@ -112,8 +112,9 @@ export const styles = StyleSheet.create({
     paddingVertical: normalize(10),
   },
   selectIdentityText: {
-    color: COLOR.WHITE,
+    color: COLOR.BLUE,
     fontSize: 16,
+    fontWeight:'900',
   },
   selectedCoverImage: {
     width: normalize(358),
@@ -162,7 +163,7 @@ export const styles = StyleSheet.create({
     paddingRight: normalize(19),
   },
   identityView: {
-    height: normalize(48),
+    minHeight: normalize(48),
     width: normalize(346),
     borderWidth: 1,
     borderRadius: normalize(5),
@@ -170,9 +171,54 @@ export const styles = StyleSheet.create({
     borderColor: COLOR.WHITE,
     padding: normalize(15),
     alignSelf: 'center',
+    flexWrap:'wrap'
   },
   identityTxt: {
-    color: COLOR.WHITE,
+    color: COLOR.BLUE,
     fontSize: 14,
+    fontWeight:'600'
   },
+  zipCodeStyleModal:{
+    width:'100%',
+    height:'100%',
+    margin:0
+  },
+  elementTouchStyle: {
+    flexDirection: 'row',
+    backgroundColor: 'light-Black',
+    paddingHorizontal: normalize(10),
+    justifyContent: 'space-around',
+    borderRadius: normalize(5),
+    alignItems:'center',
+    marginVertical:normalize(10)
+  },
+  elementTextStyle:{
+    color: 'white', 
+    fontWeight: 'bold',
+  },
+  crossImageStyle:{
+    height:normalize(15),
+    width:normalize(15),
+    resizeMode:'contain',
+    marginHorizontal:normalize(10)
+  },
+  sportsView: {
+    minHeight: normalize(48),
+    width: normalize(346),
+    borderWidth: 1,
+    borderRadius: normalize(5),
+    marginHorizontal: normalize(15),
+    borderColor: COLOR.WHITE,
+    padding: normalize(15),
+    alignSelf: 'center',
+    flexWrap:'wrap',
+    paddingHorizontal:normalize(20),
+    marginTop:normalize(10) ,
+    flexDirection:'row'
+  },
+  addNewButtonStyle:{
+    color:COLOR.BLUE,
+    height:20,
+    width:100
+  }
 });

@@ -5,7 +5,6 @@ import COLOR from '../utils/color';
 import {images} from '../utils/images';
 
 export default function CustomSportSelection({img, imgText, helper} : any) {
-
     const [choose, setChoose] = React.useState<any>(false);
     
     const selectedItems = () => {
@@ -16,15 +15,12 @@ export default function CustomSportSelection({img, imgText, helper} : any) {
   return (
       
       <TouchableOpacity style={[styles.renderContainer,]} onPress={selectedItems}>
-          {/* <SportScreen choose={choose} setChoose={setChoose}/> */}
         <View
           style={[
             styles.gridView,
             {backgroundColor: choose ? COLOR.BLUE : '#121212'},
           ]}>
-          {choose && (
-            <Image style={styles.rightCheck} source={images.rightCheck} />
-          )}
+          {choose && ( <Image style={styles.rightCheck} source={images.rightCheck} /> )}
           <Image source={{uri: img}} style={styles.gridimg} />
           <Text
             style={[
@@ -37,7 +33,6 @@ export default function CustomSportSelection({img, imgText, helper} : any) {
             {imgText}
           </Text>
         </View>
-      {/* { choose >0 ? (<CustomButton label = "CONTINUE" /> ): (<CustomInActiveButton label= "CONTINUE" />)}  */}
       </TouchableOpacity>
   );
 }

@@ -46,6 +46,8 @@ export const STRINGS = {
     SEARCH_SPORTS:"Search Sports",
     WHICH_SPORTS_PLAY:"What sport do you like to Play?",
     SPLASH:"splash",
+    SELECT_COUNTRY:"Select a Country",
+    SEARCH_COUNTRY:"Search Country"
 
   },
   TermsofUse: {
@@ -61,6 +63,7 @@ export const STRINGS = {
     TERMS_SCREEN: 'TermsScreen',
     SIGN_IN_SCREEN : "SignInScreen",
     SPORT:"SportScreen",
+    ZIPCODE:"zipCodeScreen"
   },
   ERROR_MSG: {
     NAME: {
