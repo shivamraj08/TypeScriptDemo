@@ -62,10 +62,17 @@ export const styles = StyleSheet.create({
     width: normalize(18),
     resizeMode: 'contain',
   },
-  RightArrowImageStyle: {
+  validErrorStyle: {
+    color: COLOR.WHITE,
+    fontSize: 15,
     height: normalize(20),
-    width: normalize(20),
+    maxWidth: normalize(289),
+  },
+  RightArrowImageStyle: {
+    height: normalize(12),
+    width: normalize(12),
     resizeMode: 'contain',
+    right:normalize(5)
   },
   calendarImageStyle: {
     height: normalize(18),
@@ -175,8 +182,8 @@ export const styles = StyleSheet.create({
   },
   identityTxt: {
     color: COLOR.BLUE,
-    fontSize: 14,
-    fontWeight:'600'
+    fontSize: 16,
+    fontWeight:'800'
   },
   zipCodeStyleModal:{
     width:'100%',
@@ -218,7 +225,36 @@ export const styles = StyleSheet.create({
   },
   addNewButtonStyle:{
     color:COLOR.BLUE,
-    height:20,
-    width:100
+    height:normalize(20),
+    width:normalize(100),
+    margin:normalize(10),
+    fontSize:14,
+    fontWeight:'800',
+    fontStyle:'italic'
+  },
+  textInputStyle: {
+    height: normalize(48),
+    width: '100%',
+    backgroundColor: COLOR.BLACK,
+    marginBottom: normalize(10),
+    fontWeight:'800'
+  },
+  errMsg: {
+    fontSize: 12,
+    color: COLOR.RED,
+    fontWeight: '400',
+  },
+  alreadyUserName:{
+    fontSize: 12,
+    color: 'red',
+    margin: 2,
+    maxWidth: normalize(490),
+    height: normalize(15),
+  },
+  userNameView:{
+    flexDirection:'row'
+  },
+  suggestionText:{
+    color:COLOR.WHITE
   }
 });

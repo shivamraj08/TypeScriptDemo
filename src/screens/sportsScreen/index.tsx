@@ -8,25 +8,30 @@ import CustomSportSelection from '../../component/customSportSelection';
 import CustomButton from '../../component/customButton';
 import CustomInActiveButton from '../../component/customInactiveButton';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import NavigationScreen from '../../routes';
-import {Item} from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
 
-export default function SportScreen(props: any) {
-  const {callback}: any = useRoute().params;
-  const navigation = useNavigation<any>();
+interface userdefined {
+  navigation?: any;
+  isSelected?: any;
+}
+
+function SportScreen(props: userdefined) {
+  const {callback,selectedsports}: any = useRoute().params;
+  const navigation = useNavigation();
   const {sports} = useSelector((store: any) => store.EditProfileReducer);
-  const [selectedSports, setselectedSports] = React.useState([]);
+  const [selectedSports, setselectedSports] = React.useState(selectedsports);
+  console.log('=======>',selectedSports)
   const [selectedItem, setSelectedItem] = React.useState(sports);
-  console.log('////sport data is here', sports);
+  // console.log('////sport data is here', sports);
 
   React.useEffect(() => {
+    console.log('select sport useeffect', selectedSports);
     callback(selectedSports);
   }, [selectedSports]);
 
   const helper = useCallback(
     (item: any) => {
       const index = selectedSports.findIndex(x => x == item);
-      console.log('selectedSports index', index);
+      // console.log('selectedSports index', index);
       if (index == -1) {
         setselectedSports([...selectedSports, item]);
       } else {
@@ -38,12 +43,13 @@ export default function SportScreen(props: any) {
   );
   const renderItems = ({item}: any) => {
     // console.log('+++++++++////Item There', item);
-    console.log('selectedSports', selectedSports);
+    // console.log('selectedSports', selectedSports);s
     return (
       <CustomSportSelection
         img={item.sportImg}
         imgText={item.sportName}
         helper={helper}
+        selectedSports={selectedSports}
       />
     );
   };
@@ -66,7 +72,7 @@ export default function SportScreen(props: any) {
         bounces={false}
         showsVerticalScrollIndicator={false}
       />
-      {selectedSports.length > 0 ? (
+      {selectedSports ? (
         <CustomButton
           label="CONTINUE"
           onPress={() => {
@@ -83,3 +89,5 @@ export default function SportScreen(props: any) {
     </View>
   );
 }
+
+export default React.memo(SportScreen);

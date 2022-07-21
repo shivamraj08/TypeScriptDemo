@@ -33,7 +33,7 @@ export const STRINGS = {
     ZIPCODE: 'Zipcode',
     BIO: 'Bio',
     REFERRAL_CODE: 'Referral Code',
-    SPORT_WATCH: 'Sport Watch',
+    SPORT_WATCH: 'Sport I Watch',
     USER_TELL_US_HEADER: 'Hi John! \nTell us about yourself',
     NEXT: 'NEXT',
     SELECT_IDENTITY_SCREEN:"selectIdentity",
@@ -47,8 +47,12 @@ export const STRINGS = {
     WHICH_SPORTS_PLAY:"What sport do you like to Play?",
     SPLASH:"splash",
     SELECT_COUNTRY:"Select a Country",
-    SEARCH_COUNTRY:"Search Country"
-
+    SEARCH_COUNTRY:"Search Country",
+    WHO_ARE_YOU:"Who are you?",
+    ADD_NEW:"+ Add New",
+    _FAN:"Fan",
+    _ATHL:"Athlete",
+    SUGGESTION:"Suggestions:"
   },
   TermsofUse: {
     Terms1:
@@ -71,5 +75,6 @@ export const STRINGS = {
       MIN_3_CHARACTER: 'Name should be min of 3 characters',
       EMPTY: '',
     },
+    ALREADY_USER:'Username alreadty exits. Please try using another username'
   },
 };

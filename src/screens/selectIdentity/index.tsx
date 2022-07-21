@@ -33,16 +33,12 @@ export default function SelectScreen(props: any) {
         <Image source={images.backarrow} style={styles.backArrImg} />
       </TouchableOpacity>
       <View>
-        <Text style={styles.selectTextStyle}>{'Who are you?'}</Text>
+        <Text style={styles.selectTextStyle}>{STRINGS.LABEL.WHO_ARE_YOU}</Text>
       </View>
       <TouchableOpacity onPress={handleFan} style={styles.touchableFan}>
         <Text style={styles.fanTextStyle}>{STRINGS.LABEL.FAN}</Text>
         <Image
-          style={{
-            ...styles.modalimage,
-            borderWidth: chooseIdentity == 'FAN' ? 2 : 0,
-            borderColor: COLOR.BLUE,
-          }}
+          style={ chooseIdentity===STRINGS.LABEL.FAN? styles.modalimage :[styles.modalimage,{borderWidth:0}]}
           source={images.fan}
         />
         {STRINGS.LABEL.FAN === chooseIdentity ? (
@@ -53,7 +49,7 @@ export default function SelectScreen(props: any) {
         <Image
           style={{
             ...styles.modalimage,
-            borderWidth: chooseIdentity == 'ATHLETE' ? 2 : 0,
+            borderWidth: chooseIdentity == STRINGS.LABEL.ATHLETE ? 2 : 0,
             borderColor: COLOR.BLUE,
           }}
           source={images.athlete}
@@ -63,12 +59,18 @@ export default function SelectScreen(props: any) {
         ) : null}
       </TouchableOpacity>
       <View
-        style={{flex: 1, flexDirection: 'column-reverse', marginBottom: 80}}>
-        <TouchableOpacity
+        style={{
+          flex: 1,
+          flexDirection: 'column-reverse',
+          marginBottom: 80,
+          width: '100%',
+        }}>
+        {/* <TouchableOpacity
           onPress={navigateEditScreen}
           style={styles.NextButtonTouchable}>
           <Text style={styles.NextTextStyle}>{STRINGS.LABEL.NEXT}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+        <CustomButton label={STRINGS.LABEL.NEXT} onPress={navigateEditScreen} />
       </View>
     </View>
   );
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
   selectTextStyle: {
     fontSize: 24,
     fontWeight: '900',
-    marginTop: normalize(65),
+    marginTop: normalize(85),
     color: COLOR.WHITE,
     fontStyle: 'italic',
     right: normalize(90),
@@ -95,14 +97,16 @@ const styles = StyleSheet.create({
     width: normalize(357),
     marginVertical: normalize(10),
     borderRadius: 5,
-    borderColor: 'red',
-    borderWidth: 3,
+    borderWidth:2,
+    borderColor:COLOR.BLUE
+
   },
   backArrImg: {
     height: normalize(20),
     width: normalize(20),
     top: normalize(60),
     right: normalize(160),
+    resizeMode: 'contain',
   },
   fanTextStyle: {
     height: normalize(27),
@@ -111,17 +115,17 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: '900',
     color: COLOR.WHITE,
-    top: normalize(60),
-    left: normalize(195),
+    top: normalize(40),
+    left: normalize(209),
     zIndex: 1,
     fontStyle: 'italic',
   },
   rightCheck: {
     height: normalize(20),
     width: normalize(20),
-    bottom: normalize(95),
+    bottom: normalize(102),
     resizeMode: 'contain',
-    left: normalize(335),
+    left: normalize(324),
   },
   NextButtonTouchable: {
     backgroundColor: '#44C2E3',

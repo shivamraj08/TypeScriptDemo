@@ -1,5 +1,5 @@
-import React from 'react';
-import {Text,View,TouchableOpacity,Image,ImageBackground, FlatList,} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {Text,View,TouchableOpacity,Image,ImageBackground,FlatList} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -14,8 +14,10 @@ import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import CustomButton from '../../component/customButton';
 import {useDispatch, useSelector} from 'react-redux';
-import {sportsApi} from './action';
+import {checkUserNameAction, completeProfileAction, sportsApi} from './action';
 import ZipCode from '../zipCodeScreen';
+import {TextInput} from 'react-native-paper';
+import COLOR from '../../utils/color';
 
 export default function EditProfileScreen() {
   const [coverimage, setCoverImage] = React.useState('');
@@ -24,25 +26,34 @@ export default function EditProfileScreen() {
   const [open, setOpen] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
   const [selectedDate, setSelectedDate] = React.useState('DOB(MM/DD/YYYY)');
-  const [selectedIdentity, setSelectedIdentity] = React.useState(
-    'Select Your Identity',
-  );
+  const [selectedIdentity, setSelectedIdentity] = React.useState('Select Your Identity');
+  const [error, setError] = useState<any>([]);
   const [zipcode, setzipcode] = React.useState('');
   const [zipcodeModal, setZipcodeModal] = React.useState(false);
-  // console.log('werty====>',zipcode)
-  const [selectedSports, setSelectedSports] = React.useState([]);
+  const [selectedsports, setSelectedsports] = React.useState([]);
   const {verify_Otp_Data} = useSelector((store: any) => store.VerifyOtpReducer);
-  let usernameResult=verify_Otp_Data.data.username;
+  let usernameResult = verify_Otp_Data.data.username;
+  // console.log('-------->', verify_Otp_Data);
   const dispatch = useDispatch<any>();
-
   const params = useRoute<any>();
   const navigation = useNavigation<any>();
+  const Name = verify_Otp_Data.data.name;
+  let authToken = verify_Otp_Data.data.authToken;
+  // const UserType=verify_Otp_Data.data.userType
+  const UserName = verify_Otp_Data.data.username;
+  const Id = verify_Otp_Data.data._id;
+  const userId = React.useRef<any>();
+  const [userNameResult, setUsernameResult] = React.useState(usernameResult);
 
   React.useEffect(() => {
     setSelectedIdentity(params.params);
     console.log(params.params);
   }, [navigation]);
 
+  const completeProfileEvent = () => {
+    dispatch(completeProfileAction(authToken, UserName, Id, zipcode, Name));
+    console.log('=====>>authToke',authToken,UserName,Id,zipcode,Name, );
+  };
   const calendarOpen = () => {
     setOpen(true);
   };
@@ -77,7 +88,7 @@ export default function EditProfileScreen() {
     setOpen(false);
     setDate(date);
     setSelectedDate(
-      [date.getMonth() + 1, '/', date.getDate(), '/', date.getFullYear()].join(
+      [date.getMonth() + 1, '-', date.getDate(), '-', date.getFullYear()].join(
         '',
       ),
     );
@@ -88,8 +99,56 @@ export default function EditProfileScreen() {
   };
 
   const zipCallback = (zip: any) => {
-    setzipcode(zip)
-  }
+    setzipcode(zip);
+  };
+
+  const handleUserName = () => {
+    userId?.current?.focus();
+  };
+
+  const onblur = () => {
+    dispatch(
+      checkUserNameAction(
+        authToken,
+        userNameResult,
+        (response: any) => {
+          if (response.data.statusCode == 200) {
+          }
+        },
+        (errorApi: any) => {
+          let suggest = errorApi.response.data.data.names;
+          setError([...suggest]);
+        },
+      ),
+    );
+  };
+
+  const onDelete = (index: any) => {
+    selectedsports?.splice(index, 1);
+    setSelectedsports([...selectedsports]);
+  };
+
+  const onSuggestedName = (item: any) => {
+    setUsernameResult(item);
+  };
+
+  const Flatlist_header = () => {
+    return (
+      <View>
+        <Text style={styles.alreadyUserName}>
+          {STRINGS.ERROR_MSG.ALREADY_USER}
+        </Text>
+      </View>
+    );
+  };
+
+  const _renderItem = ({item}: any) => {
+    return (
+      <TouchableOpacity onPress={() => { onSuggestedName(item);}}>
+        <Text style={styles.validErrorStyle}>{item},</Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <SafeAreaView style={styles.Container}>
@@ -103,10 +162,7 @@ export default function EditProfileScreen() {
           />
         </Modal>
         <Modal isVisible={zipcodeModal} style={styles.zipCodeStyleModal}>
-          <ZipCode
-            callback={zipCallback}
-            setZipcodeModal={setZipcodeModal}
-          />
+          <ZipCode callback={zipCallback} setZipcodeModal={setZipcodeModal} />
         </Modal>
         <Text style={styles.header}>{STRINGS.LABEL.USER_TELL_US_HEADER}</Text>
       </View>
@@ -139,16 +195,52 @@ export default function EditProfileScreen() {
         </View>
 
         <View style={styles.customTextView}>
-          <CustomTextInput
+          <View style={styles.userNameView}>
+            <TextInput
+              label={STRINGS.LABEL.CHANGE_YOUR_USERNAME}
+              ref={userId}
+              activeOutlineColor={COLOR.WHITE}
+              outlineColor={COLOR.WHITE}
+              placeholder={STRINGS.LABEL.CHANGE_YOUR_USERNAME}
+              mode="outlined"
+              autoCapitalize="none"
+              value={userNameResult}
+              onBlur={onblur}
+              onChangeText={text => {
+                setUsernameResult(text);
+              }}
+              theme={{
+                colors: {
+                  primary: COLOR.WHITE,
+                  text: COLOR.BLUE,
+                  placeholder: COLOR.WHITE,
+                },
+              }}
+              style={styles.textInputStyle}
+            />
+            <TouchableOpacity style={styles.edit} onPress={handleUserName}>
+              <Image style={styles.editImageStyle} source={images.editImage} />
+            </TouchableOpacity>
+          </View>
+          {/* <Text style={styles.validErrorStyle}>{error ? error : null}</Text> */}
+          {error.length > 0 && <Flatlist_header />}
+          {error.length > 0 && (
+            <View style={styles.userNameView}>
+              <Text style={styles.suggestionText}>{STRINGS.LABEL.SUGGESTION}</Text>
+              <FlatList data={error} renderItem={_renderItem} horizontal />
+            </View>
+          )}
+          {/* <CustomTextInput
+            ref={userId}
             label={STRINGS.LABEL.CHANGE_YOUR_USERNAME}
             placeholder={STRINGS.LABEL.CHANGE_YOUR_USERNAME}
             value={usernameResult}
             right={() => (
-              <TouchableOpacity style={styles.edit}>
+              <TouchableOpacity style={styles.edit} onPress={handleUserName}>
                 <Image style={styles.editImageStyle} source={images.edit} />
               </TouchableOpacity>
             )}
-          />
+          /> */}
           <TouchableOpacity
             style={styles.selectView}
             activeOpacity={0.5}
@@ -186,7 +278,7 @@ export default function EditProfileScreen() {
             style={styles.identityView}
             onPress={() => {
               // navigation.navigate('zipCodeScreen',{zipcode:setzipcode});
-              setZipcodeModal(!zipcodeModal,);
+              setZipcodeModal(!zipcodeModal);
             }}>
             <Text style={styles.identityTxt}>
               {zipcode?.length <= 0 ? 'ZipCode*' : zipcode}
@@ -200,42 +292,60 @@ export default function EditProfileScreen() {
               dispatch(sportsApi(verify_Otp_Data));
               navigation.navigate('SportScreen', {
                 callback: (par: any) => {
-                  setSelectedSports(par);
+                  setSelectedsports(par);
+                  console.log('par is ', par.join());
+                  // if(!selectedsports.includes(par.join())){
+                  //   setSelectedsports([...selectedsports,...par]);
+                  // }
                 },
+                selectedsports: selectedsports,
               });
-              console.log('selected Sports are here', setSelectedSports);
+              console.log('selected Sports are here', setSelectedsports);
             }}>
-              {selectedSports?.length <= 0
-                ? <Text style={styles.identityTxt}>{'Sports I Watch'}</Text>
-                : 
-                selectedSports.map(element => {
-                  return (
-                    <View style={styles.elementTouchStyle}>
-                      <Text style={styles.elementTextStyle}>
-                        {element}
-                      </Text>
-                      <TouchableOpacity>
-                        <Image
-                          style={styles.crossImageStyle}
-                          source={images.crossButton}
-                        />
-                      </TouchableOpacity>
-                    </View>
-                  );
-                })
-                 }
+            {selectedsports?.length <= 0 ? (
+              <Text style={styles.identityTxt}>{STRINGS.LABEL.SPORT_WATCH}</Text>
+            ) : (
+              selectedsports.map(element => {
+                return (
+                  <View style={styles.elementTouchStyle}>
+                    <Text style={styles.elementTextStyle}>{element}</Text>
+                    <TouchableOpacity onPress={onDelete}>
+                      <Image
+                        style={styles.crossImageStyle}
+                        source={images.crossButton}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                );
+              })
+            )}
             <TouchableOpacity
-            // onPress={()=>{navigation.navigate('SportScreen'),{selectedSports}}}
-            >
-                  { selectedSports.length>0 ?
-                  <Text style={styles.addNewButtonStyle}>
-                  {"+ Add New"}
-                  </Text>:null}
+              onPress={() => {
+                dispatch(sportsApi(verify_Otp_Data));
+                navigation.navigate('SportScreen', {
+                  callback: (par: any) => {
+                    setSelectedsports(par);
+                    // if(!selectedsports.includes(par.join())){
+                    //   setSelectedsports([...selectedsports,...par]);
+                    // }
+                  },
+                  selectedsports: selectedsports,
+                });
+                console.log('selected Sports are here', setSelectedsports);
+              }}>
+              {selectedsports.length > 0 ? (
+                <Text style={styles.addNewButtonStyle}>
+                  {STRINGS.LABEL.ADD_NEW}
+                </Text>
+              ) : null}
             </TouchableOpacity>
           </TouchableOpacity>
         </View>
       </KeyboardAwareScrollView>
-      <CustomButton label={STRINGS.LABEL.SUBMIT} />
+      <CustomButton
+        label={STRINGS.LABEL.SUBMIT}
+        onPress={completeProfileEvent}
+      />
     </SafeAreaView>
   );
 }

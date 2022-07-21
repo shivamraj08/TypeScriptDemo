@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {TextInput} from 'react-native-paper';
-import { vh } from '../utils/dimensions';
+import { normalize, vh } from '../utils/dimensions';
 import COLOR from '../utils/color';
 
 interface PROPS {
@@ -15,32 +15,41 @@ interface PROPS {
   keyboardType?: any;
   multiline?:boolean;
   onChangeText?:any;
+  left?:any;
+  ref?:any;
+  maxLength?:any;
+  autoCapitalize?:any;
 }
 
 export default function CustomTextInput(props: PROPS) {
-  let {right, error, keyboardType = 'default', securetextentry,placeholder,label,} = props;
+  let {right, error, keyboardType = 'default', securetextentry,placeholder,label, left,ref,maxLength,autoCapitalize} = props;
   return (
     <View>
       <TextInput
         {...props}
         right={null}
         label={label}
+        maxLength={maxLength}
         secureTextEntry={securetextentry}
         keyboardType={keyboardType}
+        autoCapitalize={autoCapitalize}
         activeOutlineColor={COLOR.WHITE}
         outlineColor={COLOR.WHITE}
         placeholder={placeholder}
-        mode="outlined"
+        mode='outlined'
+        ref={ref}
+        left={null}
         theme={{
           colors: {
             primary: COLOR.WHITE,
-            text: '#398AB9',
+            text: COLOR.BLUE,
             placeholder: COLOR.WHITE,
           },
         }}
         style={styles.textInputStyle}
       />
       {right != undefined ? right() : null}
+      {left != undefined ? left() : null}
       {error && <Text style={styles.errMsg}>{error}</Text>}
     </View>
   );
@@ -52,6 +61,7 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: COLOR.BLACK,
     marginBottom: vh(10),
+    fontWeight:'800'
   },
   errMsg: {
     fontSize: 12,

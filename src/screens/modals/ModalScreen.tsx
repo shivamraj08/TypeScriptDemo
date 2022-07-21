@@ -11,13 +11,13 @@ export default function ModalScreen(props: any) {
     props;
 
   const handleAthlete = () => {
-    setSelectedIdentity(STRINGS.LABEL.ATHLETE);
+    setSelectedIdentity(STRINGS.LABEL._ATHL);
     setTimeout(() => {
       setOpenModal(!openModal);
     }, 200);
   };
   const handleFan = () => {
-    setSelectedIdentity(STRINGS.LABEL.FAN);
+    setSelectedIdentity(STRINGS.LABEL._FAN);
     setTimeout(() => {
       setOpenModal(!openModal);
     }, 200);
@@ -41,11 +41,11 @@ export default function ModalScreen(props: any) {
         <Image
           style={{
             ...styles.modalimage,
-            borderWidth: selectedIdentity == 'FAN' ? 2 : 0,
+            borderWidth: selectedIdentity == STRINGS.LABEL._FAN ? 2 : 0,
           }}
           source={images.fan}
         />
-        {STRINGS.LABEL.FAN === selectedIdentity ? (
+        {STRINGS.LABEL._FAN === selectedIdentity ? (
           <Image style={styles.rightCheck} source={images.check} />
         ) : null}
       </TouchableOpacity>
@@ -53,11 +53,11 @@ export default function ModalScreen(props: any) {
         <Image
           style={{
             ...styles.modalimage,
-            borderWidth: selectedIdentity == 'ATHLETE' ? 2 : 0,
+            borderWidth: selectedIdentity == STRINGS.LABEL._ATHL ? 2 : 0,
           }}
           source={images.athlete}
         />
-        {STRINGS.LABEL.ATHLETE === selectedIdentity ? (
+        {STRINGS.LABEL._ATHL === selectedIdentity ? (
           <Image style={styles.rightCheck} source={images.check} />
         ) : null}
       </TouchableOpacity>
@@ -67,14 +67,15 @@ export default function ModalScreen(props: any) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.4,
+    flex: 0.44,
     justifyContent: 'flex-end',
     marginTop: 'auto',
     borderTopWidth: 4,
     borderColor: COLOR.BLUE,
-    backgroundColor: COLOR.BLACK,
+    backgroundColor: '#121212',
     alignItems: 'center',
-    // bottom: normalize(20),
+    bottom: normalize(20),
+    width:'100%'
   },
   selectTextStyle: {
     fontSize: 24,
@@ -87,14 +88,15 @@ const styles = StyleSheet.create({
   modalimage: {
     height: normalize(104),
     width: normalize(360),
-    marginTop: normalize(20),
+    marginTop: normalize(25),
     borderRadius: 5,
     borderColor: COLOR.BLUE,
+    bottom:normalize(10)
   },
   backArrImg: {
     height: normalize(28),
     width: normalize(28),
-    top: normalize(95),
+    top: normalize(55),
     left: normalize(155),
   },
   fanTextStyle: {
@@ -104,16 +106,16 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: '900',
     color: COLOR.WHITE,
-    top: normalize(60),
-    left: normalize(195),
+    top: normalize(54),
+    left: normalize(209),
     zIndex: 1,
     fontStyle: 'italic',
   },
   rightCheck: {
-    height: normalize(20),
-    width: normalize(20),
-    bottom: normalize(95),
+    height: normalize(18),
+    width: normalize(18),
+    bottom: normalize(100),
     resizeMode: 'contain',
-    left: normalize(335),
+    left: normalize(329),
   },
 });

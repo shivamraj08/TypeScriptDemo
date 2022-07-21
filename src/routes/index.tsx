@@ -21,10 +21,10 @@ export default function NavigationScreen() {
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name={STRINGS.LABEL.SPLASH} component={SplashScreen} />
         <Stack.Screen name={STRINGS.SCREEN.SIGN_IN_SCREEN} component={SignInScreen} />
+        <Stack.Screen name={STRINGS.SCREEN.EDIT_UP_PROFILE} component={EditProfileScreen} />
         <Stack.Screen name={STRINGS.SCREEN.SIGN_UP_PROFILE} component={SignUpScreen} />
         <Stack.Screen name={STRINGS.SCREEN.OTP_VERIFY} component={VerificationScreen} />
         <Stack.Screen name={STRINGS.LABEL.SELECT_IDENTITY_SCREEN} component={SelectScreen} />
-        <Stack.Screen name={STRINGS.SCREEN.EDIT_UP_PROFILE} component={EditProfileScreen} />
         <Stack.Screen name={STRINGS.SCREEN.SPORT} component={SportScreen} />
         <Stack.Screen name={STRINGS.SCREEN.TERMS_SCREEN} component={TermsOfUse} />
         <Stack.Screen name={STRINGS.SCREEN.ZIPCODE} component={ZipCodeScreen} />

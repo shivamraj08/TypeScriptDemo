@@ -151,21 +151,21 @@ export const styles = StyleSheet.create({
     margin:0
   },
   countryTouchStyle: {
-    backgroundColor: 'black',
+    top:normalize(25),
     borderRightWidth: 1,
     flexDirection: 'row',
     position: 'absolute',
-    top: 110,
-    zIndex: 99,
-    left: 10,
-    alignSelf: 'flex-end',
+    zIndex: 1,
+    left: normalize(10),
     width: 66,
-    justifyContent: 'space-between',
+    justifyContent:'space-between',
+    alignItems:'flex-start',
   },
   selectedCountry: {
     color: COLOR.WHITE,
     fontSize: 15,
-    bottom:normalize(3)
+    bottom:normalize(3),
+    fontWeight:'800'
   },
   downImgStyle: {
     height: normalize(10),

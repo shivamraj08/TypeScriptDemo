@@ -31,4 +31,6 @@ export const images = {
   crossButton:require('../assests/images/ic_cross.png'),
   lineSeparate:require('../assests/images/lineSeparator.png'),
   downArrow:require('../assests/images/downArrow.png'),
+  selected:require('../assests/images/selected.png'),
+  editImage:require('../assests/images/editImage.png')
 };
