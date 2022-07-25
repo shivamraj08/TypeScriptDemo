@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
-    marginLeft:normalize(15)
+    marginLeft: normalize(15),
   },
   sportsImg: {
     height: normalize(50),

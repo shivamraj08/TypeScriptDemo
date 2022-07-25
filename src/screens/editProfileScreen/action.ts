@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export const sportsApi = (verify_Otp_Data: any) => {
   const token = verify_Otp_Data.data.authToken;
-  //  console.log(token)
   const {authToken} = verify_Otp_Data;
   return (dispatch: any) => {
     const $https = axios.create({
@@ -100,8 +99,12 @@ export const completeProfileAction = (
   };
 };
 
-export const checkUserNameAction = (authToken:any,text:any,callback:Function,errorcallback:Function) => {
-
+export const checkUserNameAction = (
+  authToken: any,
+  text: any,
+  callback: Function,
+  errorcallback: Function,
+) => {
   return (dispatch: any) => {
     const $https = axios.create({
       baseURL: 'https://fivestardevapi.appskeeper.in/api/v1',
@@ -110,18 +113,18 @@ export const checkUserNameAction = (authToken:any,text:any,callback:Function,err
         Accept: 'application/json',
       },
     });
-  $https.defaults.headers.common.Authorization = `Bearer ${authToken}`;
+    $https.defaults.headers.common.Authorization = `Bearer ${authToken}`;
     $https
-      .get(`https://fivestardevapi.appskeeper.in/api/v1/user/check-username?username=${text}`)
+      .get(
+        `https://fivestardevapi.appskeeper.in/api/v1/user/check-username?username=${text}`,
+      )
       .then(response => {
         console.log('success check username', response);
-        callback(response)
+        callback(response);
       })
       .catch(error => {
         console.log('check username api is not getting data', error);
-        errorcallback(error)
+        errorcallback(error);
       });
   };
 };
-
-

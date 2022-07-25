@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
     borderWidth: 0.4,
     borderRadius: 10,
     borderTopWidth: 2,
-    height:normalize(244),
-    width:normalize(330)
+    height: normalize(244),
+    width: normalize(330),
   },
   thumbStyleView: {
     marginTop: normalize(38),

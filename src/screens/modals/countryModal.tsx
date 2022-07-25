@@ -1,19 +1,10 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  StatusBar,
-  Image,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import {StyleSheet,Text,View,FlatList,StatusBar,Image,TouchableOpacity,TextInput,} from 'react-native';
 import React from 'react';
 import {country_dial} from '../../utils/country_dial';
 import COLOR from '../../utils/color';
 import {normalize} from '../../utils/dimensions';
 import {images} from '../../utils/images';
-import { STRINGS } from '../../utils/strings';
+import {STRINGS} from '../../utils/strings';
 
 export default function CountryModal(props: any) {
   const {country, setCountry, dialcode, setDialcode} = props;
@@ -51,9 +42,10 @@ export default function CountryModal(props: any) {
     setCountry(!country);
   };
   return (
-    <View
-      style={styles.container}>
-      <Text style={styles.selectCountryText}>{STRINGS.LABEL.SELECT_COUNTRY}</Text>
+    <View style={styles.container}>
+      <Text style={styles.selectCountryText}>
+        {STRINGS.LABEL.SELECT_COUNTRY}
+      </Text>
       <TouchableOpacity onPress={countryModalClosed} activeOpacity={0.5}>
         <Image source={images.cancel} style={styles.backArrImg} />
       </TouchableOpacity>
@@ -85,10 +77,10 @@ export default function CountryModal(props: any) {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    marginTop: normalize(50), 
-    flex: 1, 
-    backgroundColor: COLOR.BLACK
+  container: {
+    marginTop: normalize(50),
+    flex: 1,
+    backgroundColor: COLOR.BLACK,
   },
   flagImgStyle: {
     height: normalize(20),

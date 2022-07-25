@@ -1,4 +1,4 @@
-import {ColorPropType, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import COLOR from '../../utils/color';
 import {normalize} from '../../utils/dimensions';
 
@@ -145,38 +145,38 @@ export const styles = StyleSheet.create({
     width: normalize(18),
     resizeMode: 'contain',
   },
-  countryStyleModal:{
-    width:'100%',
-    height:'100%',
-    margin:0
+  countryStyleModal: {
+    width: '100%',
+    height: '100%',
+    margin: 0,
   },
   countryTouchStyle: {
-    top:normalize(25),
+    top: normalize(25),
     borderRightWidth: 1,
     flexDirection: 'row',
     position: 'absolute',
     zIndex: 1,
     left: normalize(10),
     width: 66,
-    justifyContent:'space-between',
-    alignItems:'flex-start',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
   },
   selectedCountry: {
     color: COLOR.WHITE,
     fontSize: 15,
-    bottom:normalize(3),
-    fontWeight:'800'
+    bottom: normalize(3),
+    fontWeight: '800',
   },
   downImgStyle: {
     height: normalize(10),
     width: normalize(10),
-    resizeMode:'contain'
+    resizeMode: 'contain',
   },
   lineImgStyle: {
     height: normalize(20),
     width: normalize(2),
-    resizeMode:'contain',
-    bottom:normalize(4)
+    resizeMode: 'contain',
+    bottom: normalize(4),
   },
   mobileTextView: {
     width: 350,

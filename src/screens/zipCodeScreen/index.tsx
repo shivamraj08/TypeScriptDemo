@@ -1,13 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import {StyleSheet,Text,View,FlatList,Image,TextInput,TouchableOpacity,} from 'react-native';
 import React, { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import COLOR from '../../utils/color';

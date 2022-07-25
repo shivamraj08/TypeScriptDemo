@@ -1,14 +1,12 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity,Dimensions} from 'react-native';
+import {StyleSheet,Text,View,Image,TouchableOpacity,} from 'react-native';
 import React from 'react';
 import {images} from '../../utils/images';
 import {STRINGS} from '../../utils/strings';
 import COLOR from '../../utils/color';
 import {normalize} from '../../utils/dimensions';
 
-
 export default function ModalScreen(props: any) {
-  const {openModal, setOpenModal, setSelectedIdentity, selectedIdentity} =
-    props;
+  const {openModal, setOpenModal, setSelectedIdentity, selectedIdentity} =props;
 
   const handleAthlete = () => {
     setSelectedIdentity(STRINGS.LABEL._ATHL);
@@ -75,7 +73,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#121212',
     alignItems: 'center',
     bottom: normalize(20),
-    width:'100%'
+    width: '100%',
   },
   selectTextStyle: {
     fontSize: 24,
@@ -91,7 +89,7 @@ const styles = StyleSheet.create({
     marginTop: normalize(25),
     borderRadius: 5,
     borderColor: COLOR.BLUE,
-    bottom:normalize(10)
+    bottom: normalize(10),
   },
   backArrImg: {
     height: normalize(28),

@@ -3,12 +3,7 @@ import React from 'react';
 import CustomTextInput from '../../component/customTextInput';
 import {images} from '../../utils/images';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {
-  regexName,
-  regexEmail,
-  regexPhoneNo,
-  regexPassword,
-} from '../../utils/regex';
+import {regexName,regexEmail,regexPhoneNo,regexPassword,} from '../../utils/regex';
 import {styles} from './style';
 import {STRINGS} from '../../utils/strings';
 import {useDispatch, useSelector} from 'react-redux';
@@ -19,7 +14,6 @@ import {useNavigation} from '@react-navigation/native';
 import CustomBackButton from '../../component/customBackButton';
 import CountryModal from '../modals/countryModal';
 import Modal from 'react-native-modal';
-import {normalize} from '../../utils/dimensions';
 
 export default function SignUpScreen() {
   const [checkUncheck, setCheckUncheck] = React.useState(false);
@@ -172,25 +166,12 @@ export default function SignUpScreen() {
           <CustomTextInput
             label={STRINGS.LABEL.FULL_NAME}
             value={name}
-            autoCapitalize='words'
+            autoCapitalize="words"
             onChangeText={onChangeTextName}
           />
           <Text style={styles.validErrorStyle}>
             {nameValidError ? nameValidError : null}
           </Text>
-          {/* <TouchableOpacity
-            style={styles.countryTouchStyle}
-            onPress={countryChoose}>
-            <Text style={styles.selectedCountry}>{dialcode}</Text>
-            <Image
-              style={styles.downImgStyle}
-              source={images.downArrow}
-            />
-            <Image
-              style={styles.lineImgStyle}
-              source={images.lineSeparate}
-            />
-          </TouchableOpacity> */}
           <View style={styles.mobileTextView}>
             <CustomTextInput
               label={STRINGS.LABEL.MOBILE_NUMBER}
@@ -220,7 +201,7 @@ export default function SignUpScreen() {
           <CustomTextInput
             label={STRINGS.LABEL.EMAIL}
             value={email}
-            autoCapitalize='none'
+            autoCapitalize="none"
             onChangeText={onChangeTextEmail}
           />
           <Text style={styles.validErrorStyle}>

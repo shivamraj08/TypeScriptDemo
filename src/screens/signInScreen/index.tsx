@@ -1,5 +1,5 @@
 import {Text, TouchableOpacity, View, Image, Alert} from 'react-native';
-import React, { useDebugValue } from 'react';
+import React, {useDebugValue} from 'react';
 import COLOR from '../../utils/color';
 import CustomTextInput from '../../component/customTextInput';
 import CustomButton from '../../component/customButton';
@@ -9,15 +9,15 @@ import {regexEmail, regexPassword, regexPhoneNo} from '../../utils/regex';
 import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import { Api_SignIn } from './action';
+import {Api_SignIn} from './action';
 
 export default function SignInScreen() {
-  const [email, setEmail] = React.useState<any>('');
-  const [emailValidError, setEmailValidError] = React.useState('');
   const [phoneNo, setPhoneNo] = React.useState('');
   const [phoneNoError, setphoneNoError] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [hiddenPassword, showPassword] = React.useState(true);
+  const [email, setEmail] = React.useState<any>('');
+  const [emailValidError, setEmailValidError] = React.useState('');
   const [passwordError, setPasswordError] = React.useState('');
   const navigation = useNavigation<any>();
   const dispatch = useDispatch<any>();
@@ -62,7 +62,7 @@ export default function SignInScreen() {
     setEmail(value);
     handleValidEmail(value);
   };
-  
+
   const onChangeTextPassword = (value: any) => {
     setPassword(value);
     handlePassword(value);
@@ -148,7 +148,7 @@ export default function SignInScreen() {
       </TouchableOpacity>
       {/* <CustomButton label={STRINGS.LABEL.SIGN_IN} /> */}
       <TouchableOpacity
-      onPress={Sign_In_Api_Hit}
+        onPress={Sign_In_Api_Hit}
         activeOpacity={0.6}
         disabled={!handleSignInButton}
         style={

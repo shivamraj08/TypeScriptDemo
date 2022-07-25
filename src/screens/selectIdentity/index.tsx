@@ -38,7 +38,11 @@ export default function SelectScreen(props: any) {
       <TouchableOpacity onPress={handleFan} style={styles.touchableFan}>
         <Text style={styles.fanTextStyle}>{STRINGS.LABEL.FAN}</Text>
         <Image
-          style={ chooseIdentity===STRINGS.LABEL.FAN? styles.modalimage :[styles.modalimage,{borderWidth:0}]}
+          style={
+            chooseIdentity === STRINGS.LABEL.FAN
+              ? styles.modalimage
+              : [styles.modalimage, {borderWidth: 0}]
+          }
           source={images.fan}
         />
         {STRINGS.LABEL.FAN === chooseIdentity ? (
@@ -59,12 +63,7 @@ export default function SelectScreen(props: any) {
         ) : null}
       </TouchableOpacity>
       <View
-        style={{
-          flex: 1,
-          flexDirection: 'column-reverse',
-          marginBottom: 80,
-          width: '100%',
-        }}>
+        style={styles.NextButtonStyle}>
         {/* <TouchableOpacity
           onPress={navigateEditScreen}
           style={styles.NextButtonTouchable}>
@@ -97,9 +96,8 @@ const styles = StyleSheet.create({
     width: normalize(357),
     marginVertical: normalize(10),
     borderRadius: 5,
-    borderWidth:2,
-    borderColor:COLOR.BLUE
-
+    borderWidth: 2,
+    borderColor: COLOR.BLUE,
   },
   backArrImg: {
     height: normalize(20),
@@ -149,4 +147,10 @@ const styles = StyleSheet.create({
     width: normalize(357),
     marginVertical: normalize(20),
   },
+  NextButtonStyle:{
+    flex: 1,
+    flexDirection: 'column-reverse',
+    marginBottom: 80,
+    width: '100%',
+  }
 });

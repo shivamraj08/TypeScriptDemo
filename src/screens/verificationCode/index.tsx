@@ -1,4 +1,4 @@
-import {Text,View,Image,TouchableOpacity,TextInput,} from 'react-native';
+import {Text, View, Image, TouchableOpacity, TextInput} from 'react-native';
 import React, {useRef} from 'react';
 import {images} from '../../utils/images';
 import Modal from 'react-native-modal';
@@ -20,7 +20,6 @@ export default function VerificationScreen() {
   const [pin, setPin] = React.useState('');
   const [modalOpen, setModalOpen] = React.useState(false);
   const route = useRoute();
-  // console.log('pin', pin);
   // console.log('route', route.params);
   const dispatch = useDispatch<any>();
   const {sign_Up_Data} = useSelector((store: any) => store.SignUpReducer);
@@ -71,7 +70,7 @@ export default function VerificationScreen() {
       <Modal isVisible={modalOpen}>
         <CongratsModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       </Modal>
-        <CustomBackButton />
+      <CustomBackButton />
       <View style={styles.body}>
         <Text style={styles.verificationTextStyle}>
           {STRINGS.LABEL.VERIFICATION}

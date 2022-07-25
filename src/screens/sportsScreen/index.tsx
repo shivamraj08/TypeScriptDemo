@@ -15,11 +15,11 @@ interface userdefined {
 }
 
 function SportScreen(props: userdefined) {
-  const {callback,selectedsports}: any = useRoute().params;
+  const {callback, selectedsports}: any = useRoute().params;
   const navigation = useNavigation();
   const {sports} = useSelector((store: any) => store.EditProfileReducer);
   const [selectedSports, setselectedSports] = React.useState(selectedsports);
-  console.log('=======>',selectedSports)
+  console.log('=======>', selectedSports);
   const [selectedItem, setSelectedItem] = React.useState(sports);
   // console.log('////sport data is here', sports);
 
@@ -43,7 +43,7 @@ function SportScreen(props: userdefined) {
   );
   const renderItems = ({item}: any) => {
     // console.log('+++++++++////Item There', item);
-    // console.log('selectedSports', selectedSports);s
+    // console.log('selectedSports', selectedSports);
     return (
       <CustomSportSelection
         img={item.sportImg}

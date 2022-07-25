@@ -72,7 +72,7 @@ export const styles = StyleSheet.create({
     height: normalize(12),
     width: normalize(12),
     resizeMode: 'contain',
-    right:normalize(5)
+    right: normalize(5),
   },
   calendarImageStyle: {
     height: normalize(18),
@@ -121,7 +121,7 @@ export const styles = StyleSheet.create({
   selectIdentityText: {
     color: COLOR.BLUE,
     fontSize: 16,
-    fontWeight:'900',
+    fontWeight: '900',
   },
   selectedCoverImage: {
     width: normalize(358),
@@ -178,17 +178,17 @@ export const styles = StyleSheet.create({
     borderColor: COLOR.WHITE,
     padding: normalize(15),
     alignSelf: 'center',
-    flexWrap:'wrap'
+    flexWrap: 'wrap',
   },
   identityTxt: {
     color: COLOR.BLUE,
     fontSize: 16,
-    fontWeight:'800'
+    fontWeight: '800',
   },
-  zipCodeStyleModal:{
-    width:'100%',
-    height:'100%',
-    margin:0
+  zipCodeStyleModal: {
+    width: '100%',
+    height: '100%',
+    margin: 0,
   },
   elementTouchStyle: {
     flexDirection: 'row',
@@ -196,18 +196,18 @@ export const styles = StyleSheet.create({
     paddingHorizontal: normalize(10),
     justifyContent: 'space-around',
     borderRadius: normalize(5),
-    alignItems:'center',
-    marginVertical:normalize(10)
+    alignItems: 'center',
+    marginVertical: normalize(10),
   },
-  elementTextStyle:{
-    color: 'white', 
+  elementTextStyle: {
+    color: 'white',
     fontWeight: 'bold',
   },
-  crossImageStyle:{
-    height:normalize(15),
-    width:normalize(15),
-    resizeMode:'contain',
-    marginHorizontal:normalize(10)
+  crossImageStyle: {
+    height: normalize(15),
+    width: normalize(15),
+    resizeMode: 'contain',
+    marginHorizontal: normalize(10),
   },
   sportsView: {
     minHeight: normalize(48),
@@ -218,43 +218,43 @@ export const styles = StyleSheet.create({
     borderColor: COLOR.WHITE,
     padding: normalize(15),
     alignSelf: 'center',
-    flexWrap:'wrap',
-    paddingHorizontal:normalize(20),
-    marginTop:normalize(10) ,
-    flexDirection:'row'
+    flexWrap: 'wrap',
+    paddingHorizontal: normalize(20),
+    marginTop: normalize(10),
+    flexDirection: 'row',
   },
-  addNewButtonStyle:{
-    color:COLOR.BLUE,
-    height:normalize(20),
-    width:normalize(100),
-    margin:normalize(10),
-    fontSize:14,
-    fontWeight:'800',
-    fontStyle:'italic'
+  addNewButtonStyle: {
+    color: COLOR.BLUE,
+    height: normalize(20),
+    width: normalize(100),
+    margin: normalize(10),
+    fontSize: 14,
+    fontWeight: '800',
+    fontStyle: 'italic',
   },
   textInputStyle: {
     height: normalize(48),
     width: '100%',
     backgroundColor: COLOR.BLACK,
     marginBottom: normalize(10),
-    fontWeight:'800'
+    fontWeight: '800',
   },
   errMsg: {
     fontSize: 12,
     color: COLOR.RED,
     fontWeight: '400',
   },
-  alreadyUserName:{
+  alreadyUserName: {
     fontSize: 12,
     color: 'red',
     margin: 2,
     maxWidth: normalize(490),
     height: normalize(15),
   },
-  userNameView:{
-    flexDirection:'row'
+  userNameView: {
+    flexDirection: 'row',
   },
-  suggestionText:{
-    color:COLOR.WHITE
-  }
+  suggestionText: {
+    color: COLOR.WHITE,
+  },
 });
