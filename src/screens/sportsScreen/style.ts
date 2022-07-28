@@ -38,6 +38,8 @@ export const styles = StyleSheet.create({
     height: normalize(64),
     fontSize: 24,
     fontWeight: '900',
+    marginTop:normalize(10),
+    marginLeft:normalize(15)
   },
   renderContainer: {
     marginHorizontal: normalize(5),

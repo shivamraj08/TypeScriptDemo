@@ -48,4 +48,5 @@ export const images = {
   forward:require('../assests/images/forward.png'),
   save:require('../assests/images/save.png'),
   fiveStar:require('../assests/images/fiveStar.png'),
+  fiveImg:require('../assests/images/fiveImg.png'),
 };

@@ -32,6 +32,7 @@ export const STRINGS = {
     DOB: 'Date of Birth',
     ZIPCODE: 'Zipcode',
     BIO: 'Bio',
+    SEARCH:'Search',
     REFERRAL_CODE: 'Referral Code',
     SPORT_WATCH: 'Sport I Watch',
     USER_TELL_US_HEADER: 'Hi John! \nTell us about yourself',

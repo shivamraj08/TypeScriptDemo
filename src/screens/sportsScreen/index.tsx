@@ -1,4 +1,4 @@
-import {View, FlatList} from 'react-native';
+import {View, FlatList, Text} from 'react-native';
 import React, {useCallback} from 'react';
 import CustomBackButton from '../../component/customBackButton';
 import {useSelector} from 'react-redux';
@@ -8,6 +8,7 @@ import CustomSportSelection from '../../component/customSportSelection';
 import CustomButton from '../../component/customButton';
 import CustomInActiveButton from '../../component/customInactiveButton';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import { STRINGS } from '../../utils/strings';
 
 interface userdefined {
   navigation?: any;
@@ -64,7 +65,10 @@ function SportScreen(props: userdefined) {
   return (
     <View style={styles.container}>
       <CustomBackButton />
-      <CustomSearchButton onchangeText={onchangeItem} />
+      <Text style={styles.sportTextHeader}>
+          {STRINGS.LABEL.WHICH_SPORTS_PLAY}
+      </Text>
+      <CustomSearchButton onchangeText={onchangeItem} placeholder={STRINGS.LABEL.SEARCH_SPORTS}/>
       <FlatList
         data={selectedItem}
         renderItem={renderItems}

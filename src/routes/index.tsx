@@ -13,6 +13,7 @@ import SignInScreen from '../screens/signInScreen';
 import SportScreen from '../screens/sportsScreen';
 import ZipCodeScreen from '../screens/zipCodeScreen';
 import BottomTabNavigator from './bottomTab';
+import ToptabNavigator from './topTab';
 
 export default function NavigationScreen() {
   const Stack = createNativeStackNavigator();
@@ -30,6 +31,7 @@ export default function NavigationScreen() {
         <Stack.Screen name={STRINGS.SCREEN.TERMS_SCREEN} component={TermsOfUse} />
         <Stack.Screen name={STRINGS.SCREEN.ZIPCODE} component={ZipCodeScreen} /> */}
         <Stack.Screen name="BottomTab" component={BottomTabNavigator} />
+        <Stack.Screen name="TopTab" component={ToptabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

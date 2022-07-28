@@ -5,18 +5,24 @@ import COLOR from '../utils/color'
 import { normalize } from '../utils/dimensions'
 import { images } from '../utils/images'
 
-export default function CustomSearchButton(props:any) {
-  const{onchangeText}=props;
+interface userDefined{
+  onchangeText?:any,
+  placeholder?:any,
+  
+}
+export default function CustomSearchButton(props:userDefined) {
+  const{onchangeText,placeholder}=props;
   return (
     <View style={styles.body}>
-        <Text style={styles.sportTextHeader}>
+        {/* <Text style={styles.sportTextHeader}>
           {STRINGS.LABEL.WHICH_SPORTS_PLAY}
-        </Text>
+        </Text> */}
         <View style={styles.textInputViewStyle}>
           <Image style={styles.searchImgStyle} source={images.searchImg} />
           <TextInput
             style={styles.textInputStyle}
-            placeholder={STRINGS.LABEL.SEARCH_SPORTS}
+            // placeholder={STRINGS.LABEL.SEARCH_SPORTS}
+            placeholder={placeholder}
             placeholderTextColor={COLOR.WHITE}
             onChangeText={onchangeText}
           />

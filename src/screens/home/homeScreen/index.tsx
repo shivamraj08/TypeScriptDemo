@@ -1,27 +1,34 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, Dimensions} from 'react-native';
 import React, {useEffect} from 'react';
-import {images} from '../../../utils/images';
+import {images} from '../../../utils/images'; 
 import {normalize} from '../../../utils/dimensions';
 import COLOR from '../../../utils/color';
 import {useDispatch, useSelector} from 'react-redux';
 import {Video_Player_Api} from './action';
 import Video from 'react-native-video';
+import {SwiperFlatList} from 'react-native-swiper-flatlist';
+import {useIsFocused} from '@react-navigation/native';
+
+const {width, height} = Dimensions.get('screen');
 
 export default function HomeScreen() {
+  const isFocused = useIsFocused();
   const dispatch = useDispatch<any>();
+  // const videoref = React.useRef<null>();
+  const [currIndex, setCurrindex] = React.useState<any>(0);
+  const [h, setH] = React.useState<any>();
   const {verify_Otp_Data} = useSelector((store: any) => store.VerifyOtpReducer);
   const {Video_data} = useSelector((store: any) => store.HomeScreenReducer);
   console.log('teeeeeeeee', Video_data);
 
   let token = verify_Otp_Data.data.authToken;
   console.log(token);
+
+  // useEffect(() => {
+  //   if (!!videoref.current) {
+  //     videoref.current.seek(0);
+  //   }
+  // }, [currIndex]);
 
   useEffect(() => {
     dispatch(
@@ -38,20 +45,28 @@ export default function HomeScreen() {
     );
   }, []);
 
-  const _keyExtractor = (item: any, index: any) => item.key;
+  const _keyExtractor = (index: any) => index.key;
+  const onLayout = (event: any) => {
+    var {height} = event.nativeEvent.layout;
+    isFocused && setH(height);
+  };
 
-  const _renderItem = (item: any) => {
+  const onChangeIndex = ({index}: any) => {
+    setCurrindex(index);
+  };
+  const _renderItem = ({item, index}: any) => {
+    console.log('====>item', item);
     return (
-      <View style={styles.renderContainer}>
-        <Image source={images.five} style={styles.fiveImg} />
+      <View style={[styles.renderContainer, {height: h}]}>
+        <Video
+          source={{uri: item?.contentUrl}}
+          paused={!isFocused ? (currIndex == index ? false : true) : true}
+          // controls
+          // muted
+          // pictureInPicture={true}
+          style={styles.videoContainer}
+        />
         <View style={styles.body}>
-          <Video
-            source={{uri: item?.item?.contentUrl, type: 'm3u8'}}
-            playInBackground={false}
-            paused={false}
-            pictureInPicture={true}
-            style={styles.videoContainer}
-          />
           <TouchableOpacity style={styles.squareTouchable}>
             <Image source={images.squareGroup} style={styles.screenShotImg} />
           </TouchableOpacity>
@@ -72,30 +87,44 @@ export default function HomeScreen() {
     );
   };
   return (
-    <View style={styles.container}>
-      <FlatList
+    <View style={styles.container} onLayout={onLayout}>
+      <SwiperFlatList
         data={Video_data}
         renderItem={_renderItem}
         keyExtractor={_keyExtractor}
-        pagingEnabled={true}
+        onChangeIndex={onChangeIndex}
+        vertical={true}
       />
+      <View
+        style={styles.headerFiveView}>
+        <Image source={images.fiveImg} style={styles.fiveImg} />
+      </View>
     </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'black',
+  },
+  headerFiveView:{
+    alignSelf: 'center', 
+    position: 'absolute', 
+    top: normalize(70)
   },
   fiveImg: {
     width: normalize(103),
     height: normalize(25),
     alignSelf: 'center',
-    marginTop: normalize(50),
+    // marginTop: normalize(40),
+    position: 'absolute',
+    zIndex: 1,
   },
   body: {
-    width: normalize(375),
-    height: normalize(590),
-    marginTop: normalize(10),
+    // width: normalize(375),
+    // height: normalize(590),
+    marginTop: normalize(120),
+    position: 'absolute',
   },
   screenShotImg: {
     height: normalize(30),
@@ -112,72 +141,79 @@ const styles = StyleSheet.create({
     width: normalize(40),
     height: normalize(40),
     marginTop: normalize(175),
-    backgroundColor: 'grey',
+    backgroundColor: '#18191A',
     borderRadius: normalize(50),
     alignItems: 'center',
     justifyContent: 'center',
-    alignSelf: 'flex-end',
-    right: normalize(30),
+    // alignSelf: 'flex-end',
+    // right: normalize(30),
     position: 'absolute',
+    left: normalize(310),
+    borderColor: 'grey',
   },
   forwardImg: {
     height: normalize(17),
     width: normalize(21),
     resizeMode: 'contain',
+    position: 'absolute',
+    borderColor: 'red',
   },
   saveTouchable: {
     width: normalize(40),
     height: normalize(40),
-    marginTop: normalize(255),
-    backgroundColor: 'grey',
+    marginTop: normalize(25),
+    backgroundColor: '#18191A',
     borderRadius: normalize(50),
     alignItems: 'center',
     justifyContent: 'center',
-    alignSelf: 'flex-end',
-    right: normalize(30),
-    position: 'absolute',
+    // alignSelf: 'flex-end',
+    // right: normalize(30),
+    // position: 'absolute',
+    left: normalize(310),
   },
   starRateTouchable: {
     width: normalize(40),
     height: normalize(40),
     marginTop: normalize(335),
-    backgroundColor: 'grey',
+    backgroundColor: '#18191A',
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    alignSelf: 'flex-end',
-    right: normalize(30),
+    // alignSelf: 'flex-end',
+    // right: normalize(30),
+    left: normalize(310),
     position: 'absolute',
   },
   textShareStyle: {
     color: COLOR.WHITE,
-    position: 'absolute',
     marginLeft: normalize(310),
-    marginTop: normalize(210),
+    marginTop: normalize(220),
     fontSize: 12,
   },
   textSaveStyle: {
     color: COLOR.WHITE,
     position: 'absolute',
-    marginLeft: normalize(310),
-    marginTop: normalize(290),
+    marginLeft: normalize(315),
+    marginTop: normalize(300),
     fontSize: 12,
   },
   textRateStyle: {
     color: COLOR.WHITE,
     position: 'absolute',
-    marginLeft: normalize(315),
-    marginTop: normalize(365),
+    marginLeft: normalize(316),
+    marginTop: normalize(375),
     fontSize: 12,
   },
   renderContainer: {
     flex: 1,
-    backgroundColor: COLOR.BLACK,
-    zIndex: 1,
+    // backgroundColor: COLOR.BLACK,
   },
   videoContainer: {
-    height: normalize(1070),
-    width: normalize(400),
-    bottom: normalize(250),
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: height,
+    width: width,
   },
 });
