@@ -4,7 +4,7 @@ import React from 'react'
 export default function AccountSearchScreen() {
   return (
     <View style={{justifyContent:'center',alignItems:'center'}}>
-      <Text>TopSearchScreen</Text>
+      <Text>Account SearchScreen</Text>
     </View>
   )
 }

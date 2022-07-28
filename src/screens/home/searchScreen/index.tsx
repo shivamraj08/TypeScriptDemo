@@ -9,11 +9,17 @@ import CustomBackButton from '../../../component/customBackButton';
 export default function SearchScreen() {
   return (
     <View style={{flex: 1, backgroundColor: COLOR.BLACK}}>
-      <View style={{top:normalize(50)}}>
-      </View>
+      <CustomSearchButton placeholder={'Search'} 
+      topview={styles.body}
+      />
       <ToptabNavigator/>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  body:{
+    marginTop:normalize(60),
+
+  }
+});

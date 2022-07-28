@@ -8,16 +8,17 @@ import { images } from '../utils/images'
 interface userDefined{
   onchangeText?:any,
   placeholder?:any,
+  topview?:any
   
 }
 export default function CustomSearchButton(props:userDefined) {
-  const{onchangeText,placeholder}=props;
+  const{onchangeText,placeholder,topview}=props;
   return (
     <View style={styles.body}>
         {/* <Text style={styles.sportTextHeader}>
           {STRINGS.LABEL.WHICH_SPORTS_PLAY}
         </Text> */}
-        <View style={styles.textInputViewStyle}>
+        <View style={[styles.textInputViewStyle,topview]}>
           <Image style={styles.searchImgStyle} source={images.searchImg} />
           <TextInput
             style={styles.textInputStyle}
