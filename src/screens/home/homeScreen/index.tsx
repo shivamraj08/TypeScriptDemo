@@ -11,7 +11,7 @@ import {useIsFocused} from '@react-navigation/native';
 
 const {width, height} = Dimensions.get('screen');
 
-export default function HomeScreen() {
+function HomeScreen() {
   const isFocused = useIsFocused();
   const dispatch = useDispatch<any>();
   // const videoref = React.useRef<null>();
@@ -20,9 +20,8 @@ export default function HomeScreen() {
   const {verify_Otp_Data} = useSelector((store: any) => store.VerifyOtpReducer);
   const {Video_data} = useSelector((store: any) => store.HomeScreenReducer);
   console.log('teeeeeeeee', Video_data);
-
   let token = verify_Otp_Data.data.authToken;
-  console.log(token);
+  // console.log(token);
 
   // useEffect(() => {
   //   if (!!videoref.current) {
@@ -45,7 +44,7 @@ export default function HomeScreen() {
     );
   }, []);
 
-  const _keyExtractor = (index: any) => index.key;
+  const _keyExtractor = (index: any) => index._id;
   const onLayout = (event: any) => {
     var {height} = event.nativeEvent.layout;
     isFocused && setH(height);
@@ -55,7 +54,7 @@ export default function HomeScreen() {
     setCurrindex(index);
   };
   const _renderItem = ({item, index}: any) => {
-    console.log('====>item', item);
+    // console.log('====>item', item);
     return (
       <View style={[styles.renderContainer, {height: h}]}>
         <Video
@@ -102,6 +101,9 @@ export default function HomeScreen() {
     </View>
   );
 }
+
+export default React.memo(HomeScreen)
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
