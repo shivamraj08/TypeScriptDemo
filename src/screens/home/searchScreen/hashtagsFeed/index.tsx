@@ -5,10 +5,10 @@ import {normalize} from '../../../../utils/dimensions';
 import {get_Search_Hashtag_Api} from '../action';
 import COLOR from '../../../../utils/color';
 import {ActivityIndicator} from 'react-native-paper';
+import CustomListEmpty from '../../../../component/customListEmpty';
 
 export default function HashtagSearchScreen(props: any) {
   const dispatch = useDispatch<any>();
-  const [success, setSuccess] = React.useState<any>(null);
   const [page, setPage] = React.useState<any>(1);
   const [isLoading, setisLoading] = useState(false);
   const {HashTag_data} = useSelector((store: any) => store.SearchScreenReducer);
@@ -28,13 +28,11 @@ export default function HashtagSearchScreen(props: any) {
         props.data,
         page,
         (response: any) => {
-          setSuccess(response?.data?.statusCode);
           if (response?.data?.statusCode === 200) {
             setisLoading(false);
           }
         },
         (errorAPI: any) => {
-          setSuccess(errorAPI?.response?.data?.statusCode);
           setisLoading(false);
         },
       ),
@@ -46,21 +44,13 @@ export default function HashtagSearchScreen(props: any) {
     return <View style={styles.itemDividerStyle} />;
   };
 
-  const ListEmpty = () => {
-    return (
-      <View style={styles.listEmptyView}>
-        <Text style={styles.noResultText}>{'Sorry,No Result are found'}</Text>
-      </View>
-    );
-  };
-
   return (
     <View style={styles.container}>
       <FlatList
         data={HashTag_data}
         renderItem={renderList}
         ItemSeparatorComponent={ItemDivider}
-        ListEmptyComponent={ListEmpty}
+        ListEmptyComponent={props.data && <CustomListEmpty />}
         // keyExtractor={keyextractor}
         style={{height: normalize(527)}}
       />
@@ -73,6 +63,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
   },
   itemDividerStyle: {
     height: 1,

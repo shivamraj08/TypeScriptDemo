@@ -1,6 +1,13 @@
-import { StyleSheet, View, Text, Image, TouchableOpacity, Dimensions} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import React, {useEffect} from 'react';
-import {images} from '../../../utils/images'; 
+import {images} from '../../../utils/images';
 import {normalize} from '../../../utils/dimensions';
 import COLOR from '../../../utils/color';
 import {useDispatch, useSelector} from 'react-redux';
@@ -14,20 +21,11 @@ const {width, height} = Dimensions.get('screen');
 function HomeScreen() {
   const isFocused = useIsFocused();
   const dispatch = useDispatch<any>();
-  // const videoref = React.useRef<null>();
   const [currIndex, setCurrindex] = React.useState<any>(0);
   const [h, setH] = React.useState<any>();
   const {verify_Otp_Data} = useSelector((store: any) => store.VerifyOtpReducer);
   const {Video_data} = useSelector((store: any) => store.HomeScreenReducer);
-  console.log('teeeeeeeee', Video_data);
   let token = verify_Otp_Data.data.authToken;
-  // console.log(token);
-
-  // useEffect(() => {
-  //   if (!!videoref.current) {
-  //     videoref.current.seek(0);
-  //   }
-  // }, [currIndex]);
 
   useEffect(() => {
     dispatch(
@@ -94,37 +92,33 @@ function HomeScreen() {
         onChangeIndex={onChangeIndex}
         vertical={true}
       />
-      <View
-        style={styles.headerFiveView}>
+      <View style={styles.headerFiveView}>
         <Image source={images.fiveImg} style={styles.fiveImg} />
       </View>
     </View>
   );
 }
 
-export default React.memo(HomeScreen)
+export default React.memo(HomeScreen);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',
   },
-  headerFiveView:{
-    alignSelf: 'center', 
-    position: 'absolute', 
-    top: normalize(70)
+  headerFiveView: {
+    alignSelf: 'center',
+    position: 'absolute',
+    top: normalize(70),
   },
   fiveImg: {
     width: normalize(103),
     height: normalize(25),
     alignSelf: 'center',
-    // marginTop: normalize(40),
     position: 'absolute',
     zIndex: 1,
   },
   body: {
-    // width: normalize(375),
-    // height: normalize(590),
     marginTop: normalize(120),
     position: 'absolute',
   },
@@ -147,8 +141,6 @@ const styles = StyleSheet.create({
     borderRadius: normalize(50),
     alignItems: 'center',
     justifyContent: 'center',
-    // alignSelf: 'flex-end',
-    // right: normalize(30),
     position: 'absolute',
     left: normalize(310),
     borderColor: 'grey',
@@ -168,9 +160,6 @@ const styles = StyleSheet.create({
     borderRadius: normalize(50),
     alignItems: 'center',
     justifyContent: 'center',
-    // alignSelf: 'flex-end',
-    // right: normalize(30),
-    // position: 'absolute',
     left: normalize(310),
   },
   starRateTouchable: {
@@ -181,8 +170,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    // alignSelf: 'flex-end',
-    // right: normalize(30),
     left: normalize(310),
     position: 'absolute',
   },
@@ -208,7 +195,6 @@ const styles = StyleSheet.create({
   },
   renderContainer: {
     flex: 1,
-    // backgroundColor: COLOR.BLACK,
   },
   videoContainer: {
     top: 0,

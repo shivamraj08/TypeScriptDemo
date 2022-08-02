@@ -1,15 +1,16 @@
-import {FlatList, StyleSheet, Text, View, Dimensions} from 'react-native';
+import {FlatList, StyleSheet, Dimensions} from 'react-native';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {get_Search_Video_Api} from '../action';
 import Video from 'react-native-video';
+import CustomListEmpty from '../../../../component/customListEmpty';
 
 const {width} = Dimensions.get('screen');
+
 export default function VideosSearchScreen(props: any) {
   const [page, setPage] = React.useState(1);
   const dispatch = useDispatch<any>();
   const {Video_data} = useSelector((store: any) => store.SearchScreenReducer);
-  console.log('=====++++ selector videos', Video_data);
 
   React.useEffect(() => {
     dispatch(
@@ -28,7 +29,6 @@ export default function VideosSearchScreen(props: any) {
   }, [props.data]);
 
   const renderList = ({item}: any) => {
-    console.log('renderitem videos', item);
     return (
       <Video
         source={{uri: item?.contentUrlMp4}}
@@ -37,8 +37,14 @@ export default function VideosSearchScreen(props: any) {
       />
     );
   };
+
   return (
-      <FlatList data={Video_data} renderItem={renderList} numColumns={3} />
+    <FlatList
+      data={Video_data}
+      renderItem={renderList}
+      numColumns={3}
+      ListEmptyComponent={props.data && <CustomListEmpty />}
+    />
   );
 }
 

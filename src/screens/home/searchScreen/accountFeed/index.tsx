@@ -3,6 +3,7 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {get_Search_Accounts_Api} from '../action';
 import {normalize} from '../../../../utils/dimensions';
+import CustomListEmpty from '../../../../component/customListEmpty';
 
 export default function AccountSearchScreen(props: any) {
   const dispatch = useDispatch<any>();
@@ -12,7 +13,6 @@ export default function AccountSearchScreen(props: any) {
   // console.log('===????? Account data selector', Account_data);
 
   const renderList = ({item}: any) => {
-    // console.log('account render items', item);
     return (
       <View style={styles.renderContainer}>
         <Text style={styles.nameTextStyle}>{item?.name}</Text>
@@ -32,7 +32,6 @@ export default function AccountSearchScreen(props: any) {
         page,
         (response: any) => {
           if (response.data.statusCode === 200) {
-            // console.log('resp account useeffect ', response);
           }
         },
         (errorAPI: any) => {
@@ -42,7 +41,7 @@ export default function AccountSearchScreen(props: any) {
     );
   }, [props.data]);
 
-  const keyextractor = (item: any, index: any) => item._id + index ;
+  const keyextractor = (item: any, index: any) => item._id + index;
 
   const ItemDivider = () => {
     return <View style={styles.itemDividerStyle} />;
@@ -50,10 +49,9 @@ export default function AccountSearchScreen(props: any) {
 
   const onEndReachedList = () => {
     setPage(page + 1);
-    dispatch(get_Search_Accounts_Api(text, page));
   };
   return (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+    <View style={styles.container}>
       <FlatList
         data={Account_data}
         renderItem={renderList}
@@ -61,6 +59,7 @@ export default function AccountSearchScreen(props: any) {
         ItemSeparatorComponent={ItemDivider}
         onEndReached={onEndReachedList}
         onEndReachedThreshold={1}
+        ListEmptyComponent={props.data && <CustomListEmpty />}
         style={{height: normalize(527)}}
       />
     </View>
@@ -68,6 +67,9 @@ export default function AccountSearchScreen(props: any) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   itemDividerStyle: {
     height: 1,
     width: '100%',

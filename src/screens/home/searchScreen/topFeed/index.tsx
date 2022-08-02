@@ -1,18 +1,30 @@
-import {StyleSheet, Text, View, FlatList} from 'react-native';
-import React from 'react';
+import {StyleSheet, Text, View, FlatList, Image} from 'react-native';
+import React, { useCallback } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {get_Search_Api} from '../action';
 import {normalize} from '../../../../utils/dimensions';
+import CustomListEmpty from '../../../../component/customListEmpty';
+import {debounce} from 'lodash'
 
 export default function TopSearchScreen(props: any) {
   const dispatch = useDispatch<any>();
-  const [text, setText] = React.useState<any>();
   const [page, setPage] = React.useState<number>(1);
   const {Search_data} = useSelector((store: any) => store.SearchScreenReducer);
 
   React.useEffect(() => {
-    dispatch(get_Search_Api(props.data, page));
+    dispatch(get_Search_Api(props.data, page, '1'));
   }, [page]);
+
+  const processchange = useCallback( debounce((search:string)=>{
+    dispatch(get_Search_Api(search, page, '1'))
+  },1000), [])
+
+
+
+  React.useEffect(() => {
+  processchange(props.data)
+    }, [props.data]);
+
 
   const renderList = ({item}: any) => {
     return (
@@ -24,12 +36,14 @@ export default function TopSearchScreen(props: any) {
   };
 
   React.useEffect(() => {
+    console.log('prps data', props.data);
     dispatch(
       get_Search_Api(
         props.data,
         page,
+        '1',
         (response: any) => {
-          if (response.data.statusCode === 200) {
+          if (response?.data?.statusCode === 200) {
           }
         },
         (errorAPI: any) => {
@@ -48,14 +62,15 @@ export default function TopSearchScreen(props: any) {
     setPage(page + 1);
   };
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={Search_data}
         renderItem={renderList}
         // keyExtractor={keyextractor}
         ItemSeparatorComponent={ItemDivider}
         onEndReached={onEndReachedList}
-        onEndReachedThreshold={0.1}
+        ListEmptyComponent={props.data && <CustomListEmpty />}
+        onEndReachedThreshold={0.5}
         style={{height: normalize(567)}}
       />
     </View>
@@ -63,6 +78,9 @@ export default function TopSearchScreen(props: any) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   itemDividerStyle: {
     height: 1,
     width: '100%',
@@ -80,6 +98,26 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginHorizontal: normalize(40),
     marginBottom: normalize(20),
+  },
+  nosearchStyle: {
+    height: normalize(136),
+    width: normalize(136),
+    resizeMode: 'contain',
+    alignSelf: 'center',
+    top: normalize(100),
+  },
+  sorryText: {
+    color: 'white',
+    fontSize: 14,
+    alignSelf: 'center',
+    top: normalize(120),
+  },
+  noResultText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: '900',
+    alignSelf: 'center',
+    top: normalize(110),
   },
 });
 

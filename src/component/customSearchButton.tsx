@@ -1,5 +1,11 @@
-import {StyleSheet, View, TextInput, Image} from 'react-native';
-import React from 'react';
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+import React, {useRef} from 'react';
 import COLOR from '../utils/color';
 import {normalize} from '../utils/dimensions';
 import {images} from '../utils/images';
@@ -8,9 +14,16 @@ interface userDefined {
   onchangeText?: any;
   placeholder?: any;
   topview?: any;
+  text: any;
+  setText?: any;
 }
 export default function CustomSearchButton(props: userDefined) {
-  const {onchangeText, placeholder, topview} = props;
+  const {onchangeText, placeholder, topview, text, setText} = props;
+  const refvideo = useRef<null>();
+  const handleCross = () => {
+    setText('');
+    refvideo?.current?.clear();
+  };
   return (
     <View style={styles.body}>
       {/* <Text style={styles.sportTextHeader}>
@@ -24,7 +37,16 @@ export default function CustomSearchButton(props: userDefined) {
           placeholder={placeholder}
           placeholderTextColor={COLOR.WHITE}
           onChangeText={onchangeText}
+          ref={refvideo}
         />
+
+        {text.length > 0 && (
+          <TouchableOpacity
+            onPress={handleCross}
+            style={styles.crossButtonTouchable}>
+            <Image source={images.cross} style={styles.crossImgStyle} />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
@@ -85,4 +107,17 @@ const styles = StyleSheet.create({
   //     marginTop: normalize(10),
   //   },
   // });
+  crossButtonTouchable: {
+    height: 30,
+    width: 30,
+    padding: 20,
+    right: 16,
+    position: 'absolute',
+    bottom: 20,
+  },
+  crossImgStyle: {
+    height: 35,
+    width: 35,
+    resizeMode: 'contain',
+  },
 });

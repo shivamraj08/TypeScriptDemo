@@ -49,4 +49,7 @@ export const images = {
   save:require('../assests/images/save.png'),
   fiveStar:require('../assests/images/fiveStar.png'),
   fiveImg:require('../assests/images/fiveImg.png'),
+  noSearchResult:require('../assests/images/noSearchResult.png'),
+  cross:require('../assests/images/cancel.png'),
+  searchIcon:require('../assests/images/searchicon.png'),
 };

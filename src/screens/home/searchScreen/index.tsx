@@ -1,24 +1,31 @@
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Image} from 'react-native';
 import React from 'react';
 import COLOR from '../../../utils/color';
 import CustomSearchButton from '../../../component/customSearchButton';
 import {normalize} from '../../../utils/dimensions';
 import ToptabNavigator from '../../../routes/topTab';
-import {useSelector} from 'react-redux';
+import {images} from '../../../utils/images';
+import {debounce} from 'lodash';
 
 export default function SearchScreen() {
-  const [text, setText] = React.useState<any>();
-  const {Search_data} = useSelector((store: any) => store.SearchScreenReducer);
+  const [text, setText] = React.useState<any>('');
 
   return (
     <View style={{flex: 1, backgroundColor: COLOR.BLACK}}>
-      <CustomSearchButton
-        placeholder={'Search'}
-        topview={styles.body}
-        onchangeText={(txt: any) => {
-          setText(txt);
-        }}
-      />
+      <View style={{flexDirection: 'row'}}>
+        <CustomSearchButton
+          text={text}
+          setText={setText}
+          placeholder={'Search'}
+          topview={styles.body}
+          onchangeText={(txt: any) => {
+            setText(txt);
+          }}
+        />
+        <TouchableOpacity style={styles.searchView}>
+          <Image source={images.searchIcon} style={styles.searchIconImg} />
+        </TouchableOpacity>
+      </View>
       <ToptabNavigator data={text} />
     </View>
   );
@@ -27,6 +34,7 @@ export default function SearchScreen() {
 const styles = StyleSheet.create({
   body: {
     marginTop: normalize(60),
+    width: normalize(300),
   },
   itemDividerStyle: {
     height: 1,
@@ -42,8 +50,24 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   renderContainer: {
-    marginTop: 30,
+    marginTop: normalize(30),
     marginHorizontal: normalize(40),
     marginBottom: normalize(20),
+  },
+  searchView: {
+    height: normalize(46),
+    width: normalize(46),
+    borderRadius: normalize(5),
+    borderWidth: 1,
+    borderColor: COLOR.BLUE,
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: normalize(70),
+    right:10
+  },
+  searchIconImg: {
+    height: normalize(30),
+    width: normalize(30),
+    resizeMode: 'contain',
   },
 });
