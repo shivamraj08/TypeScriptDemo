@@ -38,6 +38,7 @@ export function get_Search_Api(
 export function get_Search_Accounts_Api(
   text: string,
   page: number,
+  type: any,
   callback?: Function,
   errorCallback?: Function,
 ) {
@@ -45,7 +46,7 @@ export function get_Search_Accounts_Api(
     const {Account_data} = getState().SearchScreenReducer;
     axios
       .get(
-        `https://fivestardevapi.appskeeper.in/api/v1/user/search?search=${text}&type=2&page=${page}`,
+        `https://fivestardevapi.appskeeper.in/api/v1/user/search?search=${text}&type=${type}&page=${page}`,
       )
       .then(response => {
         if (page === 1) {
@@ -72,23 +73,24 @@ export function get_Search_Accounts_Api(
 export function get_Search_Hashtag_Api(
   text: string,
   page: number,
-  callback: Function,
-  errorCallback: Function,
+  type: any,
+  callback?: Function,
+  errorCallback?: Function,
 ) {
   return (dispatch: any) => {
     axios
       .get(
-        `https://fivestardevapi.appskeeper.in/api/v1/user/search?search=${text}&type=3&page=${page}`,
+        `https://fivestardevapi.appskeeper.in/api/v1/user/search?search=${text}&type=${type}&page=${page}`,
       )
       .then(response => {
         // console.log('get hashtag response', response?.data?.data?.result);
         dispatch({type: 'set_hashtag', payload: response?.data?.data?.result});
-        callback(response);
+        // callback(response);
       })
       .catch(error => {
         // console.log('error in hashtag api', error);
         dispatch({type: 'set_hashtag', payload: []});
-        errorCallback(error);
+        // errorCallback(error);
       });
   };
 }
@@ -96,23 +98,24 @@ export function get_Search_Hashtag_Api(
 export function get_Search_Video_Api(
   text: string,
   page: number,
-  callback: Function,
-  errorCallback: Function,
+  type: any,
+  callback?: Function,
+  errorCallback?: Function,
 ) {
   return (dispatch: any) => {
     axios
       .get(
-        `https://fivestardevapi.appskeeper.in/api/v1/user/search?search=${text}&type=4&page=${page}`,
+        `https://fivestardevapi.appskeeper.in/api/v1/user/search?search=${text}&type=${type}&page=${page}`,
       )
       .then(response => {
         // console.log('videos response', response?.data?.data?.result);
         dispatch({type: 'set_video', payload: response?.data?.data?.result});
-        callback(response);
+        // callback(response);
       })
       .catch(error => {
         // console.log('error in video api', error);
         dispatch({type: 'set_video', payload: []});
-        errorCallback(error);
+        // errorCallback(error);
       });
   };
 }

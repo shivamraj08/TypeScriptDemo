@@ -78,4 +78,8 @@ export const STRINGS = {
     },
     ALREADY_USER:'Username alreadty exits. Please try using another username'
   },
+  ACTIVITY:{
+    YOUR_ACTIVITY_LIST_EMPTY:'Your activity list is empty',
+    TAG_LINE_TEXT:'You can view all your the recent requests and other activities here !'
+  }
 };

@@ -57,7 +57,7 @@ function HomeScreen() {
       <View style={[styles.renderContainer, {height: h}]}>
         <Video
           source={{uri: item?.contentUrl}}
-          paused={!isFocused ? (currIndex == index ? false : true) : true}
+          paused={isFocused ? (currIndex == index ? false : true) : true}
           // controls
           // muted
           // pictureInPicture={true}

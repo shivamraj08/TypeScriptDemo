@@ -1,11 +1,12 @@
-import {StyleSheet, Text, View, FlatList} from 'react-native';
-import React, {useState} from 'react';
+import {StyleSheet, Text, View, FlatList,ActivityIndicator, Image} from 'react-native';
+import React, {useCallback, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {normalize} from '../../../../utils/dimensions';
 import {get_Search_Hashtag_Api} from '../action';
 import COLOR from '../../../../utils/color';
-import {ActivityIndicator} from 'react-native-paper';
 import CustomListEmpty from '../../../../component/customListEmpty';
+import {debounce} from 'lodash';
+import { images } from '../../../../utils/images';
 
 export default function HashtagSearchScreen(props: any) {
   const dispatch = useDispatch<any>();
@@ -16,10 +17,23 @@ export default function HashtagSearchScreen(props: any) {
   const renderList = ({item}: any) => {
     return (
       <View style={styles.renderContainer}>
+        <Image source={images.hashtag} style={styles.accountImg} resizeMode={'contain'}/>
         <Text style={styles.nameTextStyle}>{item?.hashtag}</Text>
       </View>
     );
   };
+
+  const processchange = useCallback(
+    debounce((search: string) => {
+      setisLoading(false);
+      dispatch(get_Search_Hashtag_Api(search, page, '3'));
+    }, 1000),
+    [],
+  );
+
+  React.useEffect(() => {
+    processchange(props.data);
+  }, [props.data]);
 
   React.useEffect(() => {
     setisLoading(true);
@@ -27,6 +41,7 @@ export default function HashtagSearchScreen(props: any) {
       get_Search_Hashtag_Api(
         props.data,
         page,
+        '3',
         (response: any) => {
           if (response?.data?.statusCode === 200) {
             setisLoading(false);
@@ -50,19 +65,17 @@ export default function HashtagSearchScreen(props: any) {
         data={HashTag_data}
         renderItem={renderList}
         ItemSeparatorComponent={ItemDivider}
-        ListEmptyComponent={props.data && <CustomListEmpty />}
+        ListEmptyComponent={props.data && !isLoading &&<CustomListEmpty />}
         // keyExtractor={keyextractor}
         style={{height: normalize(527)}}
       />
-      {isLoading && <ActivityIndicator size={'small'} color={'grey'} />}
+      {isLoading && <ActivityIndicator size={'large'} color={COLOR.BLUE} style={styles.indicator}/>}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
     flex: 1,
   },
   itemDividerStyle: {
@@ -77,11 +90,14 @@ const styles = StyleSheet.create({
   nameTextStyle: {
     fontSize: 18,
     color: 'white',
+    marginHorizontal:normalize(20),
+    marginTop:normalize(10)
   },
   renderContainer: {
-    marginTop: 50,
-    marginHorizontal: normalize(20),
-    marginBottom: normalize(10),
+    marginTop: 20,
+    marginHorizontal: normalize(30),
+    marginBottom: normalize(20),
+    flexDirection:'row'
   },
   listEmptyView: {
     justifyContent: 'center',
@@ -93,4 +109,11 @@ const styles = StyleSheet.create({
     color: COLOR.WHITE,
     fontSize: 14,
   },
+  accountImg:{
+    height:normalize(40),
+    width:normalize(40)
+  },
+  indicator:{
+    marginBottom:normalize(290)
+  }
 });

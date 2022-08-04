@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     right:10
   },
   searchIconImg: {
-    height: normalize(30),
-    width: normalize(30),
+    height: normalize(25),
+    width: normalize(25),
     resizeMode: 'contain',
   },
 });

@@ -1,41 +1,49 @@
-import {StyleSheet, Text, View, FlatList, Image} from 'react-native';
-import React, { useCallback } from 'react';
+import {StyleSheet, Text, View, FlatList, Image, ActivityIndicator} from 'react-native';
+import React, {useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {get_Search_Api} from '../action';
 import {normalize} from '../../../../utils/dimensions';
 import CustomListEmpty from '../../../../component/customListEmpty';
-import {debounce} from 'lodash'
+import {debounce} from 'lodash';
+import { images } from '../../../../utils/images';
+import COLOR from '../../../../utils/color';
 
 export default function TopSearchScreen(props: any) {
   const dispatch = useDispatch<any>();
   const [page, setPage] = React.useState<number>(1);
+  const [isLoading,setIsLoading] = React.useState<boolean>(false);
   const {Search_data} = useSelector((store: any) => store.SearchScreenReducer);
 
   React.useEffect(() => {
     dispatch(get_Search_Api(props.data, page, '1'));
   }, [page]);
 
-  const processchange = useCallback( debounce((search:string)=>{
-    dispatch(get_Search_Api(search, page, '1'))
-  },1000), [])
-
-
+  const processchange = useCallback(
+    debounce((search: string) => {
+      setIsLoading(false)
+      dispatch(get_Search_Api(search, page, '1'));
+    }, 1000),
+    [],
+  );
 
   React.useEffect(() => {
-  processchange(props.data)
-    }, [props.data]);
-
+    processchange(props.data);
+  }, [props.data]);
 
   const renderList = ({item}: any) => {
     return (
       <View style={styles.renderContainer}>
+        <Image source={images.account} style={styles.accountImg} resizeMode={'contain'}/>
+        <View style={styles.userNameView}>
         <Text style={styles.nameTextStyle}>{item?.name}</Text>
         <Text style={styles.usernameTextStyle}>{item?.username}</Text>
+        </View>
       </View>
     );
   };
 
   React.useEffect(() => {
+    setIsLoading(true)
     console.log('prps data', props.data);
     dispatch(
       get_Search_Api(
@@ -44,10 +52,13 @@ export default function TopSearchScreen(props: any) {
         '1',
         (response: any) => {
           if (response?.data?.statusCode === 200) {
+          setIsLoading(false)
           }
         },
         (errorAPI: any) => {
           console.log('err', errorAPI);
+          setIsLoading(false)
+
         },
       ),
     );
@@ -69,10 +80,11 @@ export default function TopSearchScreen(props: any) {
         // keyExtractor={keyextractor}
         ItemSeparatorComponent={ItemDivider}
         onEndReached={onEndReachedList}
-        ListEmptyComponent={props.data && <CustomListEmpty />}
+        ListEmptyComponent={props.data && !isLoading && <CustomListEmpty />}
         onEndReachedThreshold={0.5}
         style={{height: normalize(567)}}
       />
+      {isLoading && <ActivityIndicator size={'large'} color={COLOR.BLUE} style={styles.indicator}/>}
     </View>
   );
 }
@@ -96,8 +108,9 @@ const styles = StyleSheet.create({
   },
   renderContainer: {
     marginTop: 30,
-    marginHorizontal: normalize(40),
+    marginHorizontal: normalize(20),
     marginBottom: normalize(20),
+    flexDirection:'row',
   },
   nosearchStyle: {
     height: normalize(136),
@@ -119,6 +132,16 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     top: normalize(110),
   },
+  accountImg:{
+    height:normalize(50),
+    width:normalize(50),
+  },
+  userNameView:{
+    marginHorizontal:normalize(20),
+  },
+  indicator:{
+    marginBottom:normalize(290)
+  }
 });
 
 // function errorcallback(

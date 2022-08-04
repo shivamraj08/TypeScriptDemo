@@ -52,4 +52,6 @@ export const images = {
   noSearchResult:require('../assests/images/noSearchResult.png'),
   cross:require('../assests/images/cancel.png'),
   searchIcon:require('../assests/images/searchicon.png'),
+  hashtag:require('../assests/images/hashtag.png'),
+  activityImg:require('../assests/images/activityImg.png'),
 };

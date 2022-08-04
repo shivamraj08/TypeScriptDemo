@@ -68,7 +68,7 @@ function SportScreen(props: userdefined) {
       <Text style={styles.sportTextHeader}>
           {STRINGS.LABEL.WHICH_SPORTS_PLAY}
       </Text>
-      <CustomSearchButton onchangeText={onchangeItem} placeholder={STRINGS.LABEL.SEARCH_SPORTS}/>
+      <CustomSearchButton onchangeText={onchangeItem} placeholder={STRINGS.LABEL.SEARCH_SPORTS} text={undefined}/>
       <FlatList
         data={selectedItem}
         renderItem={renderItems}

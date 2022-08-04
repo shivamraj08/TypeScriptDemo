@@ -69,9 +69,10 @@ const styles = StyleSheet.create({
     marginRight: normalize(19),
   },
   searchImgStyle: {
-    height: normalize(20),
-    width: normalize(20),
+    height: normalize(16),
+    width: normalize(16),
     marginLeft: normalize(15),
+    resizeMode:'contain'
   },
   textInputStyle: {
     marginHorizontal: normalize(20),
