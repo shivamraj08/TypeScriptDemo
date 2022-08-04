@@ -20,7 +20,7 @@ export default function ZipCode(props: user) {
   const[text,setText] = React.useState('');
 
   useEffect(() => {
-    console.log('page:asdfasd',page,text);
+    // console.log('page:asdfasd',page,text);
     dispatch({type: 'SET_ZIPCODE', payload:[]});
   }, [])
   

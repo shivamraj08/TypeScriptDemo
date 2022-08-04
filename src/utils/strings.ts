@@ -68,7 +68,9 @@ export const STRINGS = {
     TERMS_SCREEN: 'TermsScreen',
     SIGN_IN_SCREEN : "SignInScreen",
     SPORT:"SportScreen",
-    ZIPCODE:"zipCodeScreen"
+    ZIPCODE:"zipCodeScreen",
+    BOTTOM_TAB:"BottomTab",
+    TOP_TAB:"TopTab",
   },
   ERROR_MSG: {
     NAME: {

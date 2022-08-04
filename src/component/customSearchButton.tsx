@@ -40,7 +40,7 @@ export default function CustomSearchButton(props: userDefined) {
           ref={refvideo}
         />
 
-        {text.length > 0 && (
+        {text?.length > 0 && (
           <TouchableOpacity
             onPress={handleCross}
             style={styles.crossButtonTouchable}>

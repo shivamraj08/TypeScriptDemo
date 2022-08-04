@@ -1,5 +1,5 @@
 export const images = {
-  edit: require('../assests/images/edit.png'),
+  edit: require('../assests/images/edit_Img.png'),
   camera: require('../assests/images/ic_camera.png'),
   profile: require('../assests/images/profile.png'),
   cover: require('../assests/images/Cover.png'),
@@ -54,4 +54,7 @@ export const images = {
   searchIcon:require('../assests/images/searchicon.png'),
   hashtag:require('../assests/images/hashtag.png'),
   activityImg:require('../assests/images/activityImg.png'),
+  edit_Grp:require('../assests/images/Edit.png'),
+  star_w_Rating:require('../assests/images/star_w_Rating.png'),
+  follower_Img:require('../assests/images/follower_Img.png'),
 };

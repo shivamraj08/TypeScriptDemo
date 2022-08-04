@@ -20,9 +20,7 @@ function SportScreen(props: userdefined) {
   const navigation = useNavigation();
   const {sports} = useSelector((store: any) => store.EditProfileReducer);
   const [selectedSports, setselectedSports] = React.useState(selectedsports);
-  console.log('=======>', selectedSports);
   const [selectedItem, setSelectedItem] = React.useState(sports);
-  // console.log('////sport data is here', sports);
 
   React.useEffect(() => {
     console.log('select sport useeffect', selectedSports);

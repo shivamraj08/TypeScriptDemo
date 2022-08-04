@@ -23,7 +23,7 @@ export default function VerificationScreen() {
   // console.log('route', route.params);
   const dispatch = useDispatch<any>();
   const {sign_Up_Data} = useSelector((store: any) => store.SignUpReducer);
-  console.log('sign_Up_Data', sign_Up_Data.userId);
+  // console.log('sign_Up_Data', sign_Up_Data.userId);
   // console.log('otp =======>',verify_Otp_Data);
 
   const VerifyOtp_Api = () => {

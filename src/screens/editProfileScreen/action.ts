@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 export const sportsApi = (verify_Otp_Data: any) => {
   const token = verify_Otp_Data.data.authToken;
@@ -25,14 +26,14 @@ export const sportsApi = (verify_Otp_Data: any) => {
   };
 };
 export const zipCodeAction = (text: string, page: number) => {
-  console.log('tex', text, 'page:', page);
+  // console.log('tex', text, 'page:', page);
   // const token = verify_Otp_Data.data.authToken;
   // const {authToken} = verify_Otp_Data;
   return (dispatch: any, getState: any) => {
     const {
       EditProfileReducer: {zipCodeData},
     } = getState();
-    console.log('masudgfuayshdff', zipCodeData);
+    // console.log('masudgfuayshdff', zipCodeData);
 
     const $https = axios.create({
       baseURL: 'https://fivestardevapi.appskeeper.in/api/v1',
@@ -45,7 +46,7 @@ export const zipCodeAction = (text: string, page: number) => {
     $https
       .get(`zipcode-list?page=${page}&limit=15&search=${text}`)
       .then(resp => {
-        console.log('zipcode resp', resp);
+        // console.log('zipcode resp', resp);
         if (page > 1 && zipCodeData?.length > 0) {
           dispatch({
             type: 'SET_ZIPCODE',
@@ -65,10 +66,11 @@ export const completeProfileAction = (
   id: string,
   zipcode: string,
   name: string,
+  bio:string,
   // userType: string,
 ) => {
-  console.log(username, id, zipcode, name);
-  return () => {
+  // console.log(username, id, zipcode, name);
+  return (dispatch:any) => {
     const $https = axios.create({
       baseURL: 'https://fivestardevapi.appskeeper.in/api/v1',
       headers: {
@@ -87,11 +89,20 @@ export const completeProfileAction = (
           zipcode,
           name,
           userType: 1,
-          personalDetails: {},
+          personalDetails: {
+            "height": {
+              "feet": 1,
+              "inch": 2
+            },
+            "dob": "2021-12-23T08:52:43.725+00:00",
+            "weight": 23,
+            "bio": bio
+          },
         },
       )
       .then(response => {
-        console.log('complete profile success ++++', response);
+        // console.log('complete profile success ++++', response.data);
+        dispatch({type:'SET_COMPLETE',payload:response?.data})
       })
       .catch(error => {
         console.log('Error profile', error);
@@ -119,11 +130,11 @@ export const checkUserNameAction = (
         `https://fivestardevapi.appskeeper.in/api/v1/user/check-username?username=${text}`,
       )
       .then(response => {
-        console.log('success check username', response);
+        // console.log('success check username', response);
         callback(response);
       })
       .catch(error => {
-        console.log('check username api is not getting data', error);
+        // console.log('check username api is not getting data', error);
         errorcallback(error);
       });
   };

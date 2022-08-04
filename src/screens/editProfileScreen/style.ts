@@ -119,7 +119,7 @@ export const styles = StyleSheet.create({
     paddingVertical: normalize(10),
   },
   selectIdentityText: {
-    color: COLOR.BLUE,
+    color: COLOR.BLUE ,
     fontSize: 16,
     fontWeight: '900',
   },

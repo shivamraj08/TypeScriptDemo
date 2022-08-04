@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {Text,View,TouchableOpacity,Image,ImageBackground,FlatList,} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -26,13 +26,12 @@ export default function EditProfileScreen() {
   const [open, setOpen] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
   const [selectedDate, setSelectedDate] = React.useState('DOB(MM/DD/YYYY)');
-  const [selectedIdentity, setSelectedIdentity] = React.useState(
-    'Select Your Identity',
-  );
+  const [selectedIdentity, setSelectedIdentity] = React.useState<any>('');
   const [error, setError] = useState<any>([]);
   const [zipcode, setzipcode] = React.useState('');
   const [zipcodeModal, setZipcodeModal] = React.useState(false);
   const [selectedsports, setSelectedsports] = React.useState([]);
+  const [bio,setBio]=React.useState('')
   const {verify_Otp_Data} = useSelector((store: any) => store.VerifyOtpReducer);
   let usernameResult = verify_Otp_Data.data.username;
   const dispatch = useDispatch<any>();
@@ -48,13 +47,11 @@ export default function EditProfileScreen() {
 
   React.useEffect(() => {
     setSelectedIdentity(params.params);
-    console.log(params.params);
   }, [navigation]);
 
   const completeProfileEvent = () => {
-    navigation.navigate("BottomTab")
-    dispatch(completeProfileAction(authToken, UserName, Id, zipcode, Name));
-    console.log('=====>>authToke', authToken, UserName, Id, zipcode, Name);
+    navigation.navigate('BottomTab');
+    dispatch(completeProfileAction(authToken, UserName, Id, zipcode, Name,bio));
   };
   const calendarOpen = () => {
     setOpen(true);
@@ -167,7 +164,6 @@ export default function EditProfileScreen() {
       },
       selectedsports: selectedsports,
     });
-    console.log('selected Sports are here', setSelectedsports);
   };
 
   return (
@@ -184,7 +180,9 @@ export default function EditProfileScreen() {
         <Modal isVisible={zipcodeModal} style={styles.zipCodeStyleModal}>
           <ZipCode callback={zipCallback} setZipcodeModal={setZipcodeModal} />
         </Modal>
-        <Text style={styles.header}>{STRINGS.LABEL.USER_TELL_US_HEADER}</Text>
+        <Text style={styles.header}>
+          {'Hi ' + Name + '!\nTell us about yourself'}
+        </Text>
       </View>
       <KeyboardAwareScrollView extraHeight={180}>
         <View style={styles.imgContainer}>
@@ -242,8 +240,8 @@ export default function EditProfileScreen() {
               <Image style={styles.editImageStyle} source={images.editImage} />
             </TouchableOpacity>
           </View>
-          {error.length > 0 && <Flatlist_header />}
-          {error.length > 0 && (
+          {error?.length > 0 && <Flatlist_header />}
+          {error?.length > 0 && (
             <View style={styles.userNameView}>
               <Text style={styles.suggestionText}>
                 {STRINGS.LABEL.SUGGESTION}
@@ -266,7 +264,9 @@ export default function EditProfileScreen() {
             style={styles.selectView}
             activeOpacity={0.5}
             onPress={identityOpen}>
-            <Text style={styles.selectIdentityText}>{selectedIdentity}</Text>
+            <Text style={styles.selectIdentityText}>
+              {selectedIdentity || 'Select Your Identity'}
+            </Text>
             <Image
               style={styles.RightArrowImageStyle}
               source={images.rightArrow}
@@ -294,18 +294,20 @@ export default function EditProfileScreen() {
               </TouchableOpacity>
             )}
           />
-          {/* <CustomTextInput label={STRINGS.LABEL.ZIPCODE} onPress={()=>{navigation.navigate('zipCodeScreen')}} /> */}
           <TouchableOpacity
             style={styles.identityView}
             onPress={() => {
-              // navigation.navigate('zipCodeScreen',{zipcode:setzipcode});
               setZipcodeModal(!zipcodeModal);
             }}>
             <Text style={styles.identityTxt}>
               {zipcode?.length <= 0 ? 'ZipCode*' : zipcode}
             </Text>
           </TouchableOpacity>
-          <CustomTextInput label={STRINGS.LABEL.BIO} multiline={true} />
+          <CustomTextInput label={STRINGS.LABEL.BIO} multiline={true} 
+           onChangeText={(text:any)=>{
+            setBio(text);
+           }}
+          />
           <CustomTextInput label={STRINGS.LABEL.REFERRAL_CODE} />
           <TouchableOpacity style={styles.sportsView} onPress={onZipCodePress}>
             {selectedsports?.length <= 0 ? (
@@ -328,19 +330,6 @@ export default function EditProfileScreen() {
               })
             )}
             <TouchableOpacity onPress={onZipCodePress}>
-              {/* () => {
-                dispatch(sportsApi(verify_Otp_Data));
-                navigation.navigate('SportScreen', {
-                  callback: (par: any) => {
-                    setSelectedsports(par);
-                    // if(!selectedsports.includes(par.join())){
-                    //   setSelectedsports([...selectedsports,...par]);
-                    // }
-                  },
-                  selectedsports: selectedsports,
-                });
-                console.log('selected Sports are here', setSelectedsports);
-              } */}
               {selectedsports.length > 0 ? (
                 <Text style={styles.addNewButtonStyle}>
                   {STRINGS.LABEL.ADD_NEW}
