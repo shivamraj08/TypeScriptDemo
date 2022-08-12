@@ -67,6 +67,8 @@ export const completeProfileAction = (
   zipcode: string,
   name: string,
   bio:string,
+  dob:any,
+  likedSport:any
   // userType: string,
 ) => {
   // console.log(username, id, zipcode, name);
@@ -94,11 +96,12 @@ export const completeProfileAction = (
               "feet": 1,
               "inch": 2
             },
-            "dob": "2021-12-23T08:52:43.725+00:00",
+            "dob": dob,
             "weight": 23,
             "bio": bio
           },
-        },
+          },
+          likedSport,
       )
       .then(response => {
         // console.log('complete profile success ++++', response.data);

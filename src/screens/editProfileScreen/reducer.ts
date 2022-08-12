@@ -1,7 +1,7 @@
 const initialState = {
   sports: [],
   zipCodeData: [],
-  Complete_profile:[]
+  Complete_profile:[],
 };
 
 const EditProfileReducer = (state = initialState, action: any) => {
@@ -12,9 +12,8 @@ const EditProfileReducer = (state = initialState, action: any) => {
       return {...state, sports: payload};
     case 'SET_ZIPCODE':
       return {...state, zipCodeData: [...payload]};
-      case 'SET_COMPLETE':
-        return {...state, Complete_profile:payload};
-
+    case 'SET_COMPLETE':
+      return {...state, Complete_profile:payload};
     default:
       return state;
   }

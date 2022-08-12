@@ -57,4 +57,7 @@ export const images = {
   edit_Grp:require('../assests/images/Edit.png'),
   star_w_Rating:require('../assests/images/star_w_Rating.png'),
   follower_Img:require('../assests/images/follower_Img.png'),
+  moreImg:require('../assests/images/moreImg.png'),
+  lessImg:require('../assests/images/lessImg.png'),
+  addNew:require('../assests/images/addnew.png')
 };

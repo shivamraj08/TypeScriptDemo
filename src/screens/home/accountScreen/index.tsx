@@ -6,7 +6,8 @@ import {
   Dimensions,
   ImageBackground,
   SafeAreaView,
-  Text
+  Text,
+  ScrollView
 } from 'react-native';
 import React, { useCallback } from 'react';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -16,7 +17,7 @@ import COLOR from '../../../utils/color';
 import {normalize} from '../../../utils/dimensions';
 import {images} from '../../../utils/images';
 import { STRINGS } from '../../../utils/strings';
-
+import moment from 'moment';
 
 const {width, height} = Dimensions.get('screen');
 export default function AccountScreen() {
@@ -27,11 +28,19 @@ export default function AccountScreen() {
   const [textShown, setTextShown] = React.useState(false);
   const [lengthMore, setLengthMore] = React.useState(false);
   const {Complete_profile} = useSelector((store: any) => store.EditProfileReducer);
-  console.log('yyyyyyy', Complete_profile);
-   let name=Complete_profile.data.name
-   let userName=Complete_profile.data.username
-   let updatedBio=Complete_profile.data.personalDetails.bio
+  const {verify_Otp_Data}=useSelector((store:any)=>store.VerifyOtpReducer)
+  const [moreLength,setMoreLength] = React.useState<boolean>(false)
 
+   let name=verify_Otp_Data?.data?.name
+   let userName=verify_Otp_Data?.data?.username
+   let updatedBio=Complete_profile?.data?.personalDetails?.bio
+   let likedsport=Complete_profile?.data?.likedSport
+   let updatedDob=Complete_profile?.data?.personalDetails?.dob
+  
+   let yrs = moment().diff(updatedDob, 'year');
+   const BirthDate = moment(updatedDob).add(yrs, 'Y').format('YYYY-MM-DD');
+   let days = moment().diff(BirthDate, 'days');
+  
   const imageOpencover = async () => {
     try {
       const image = await ImagePicker.openPicker({
@@ -65,7 +74,12 @@ export default function AccountScreen() {
   const onTextLayout = useCallback((e) => {
     setLengthMore(e.nativeEvent.lines.length >= 3);
   }, []);
+   
+  const moreDetails = () => {
+    setMoreLength(!moreLength)
+  }
   return (
+    <ScrollView style={styles.parent}>
     <SafeAreaView style={styles.parent}>
       <View>
         <TouchableOpacity onPress={imageOpencover}>
@@ -90,20 +104,42 @@ export default function AccountScreen() {
       <Image source={images.star_w_Rating} style={styles.ratingImg} resizeMode='contain' />
       <Image source={images.follower_Img} style={styles.followerStyle} />
       <Text style={styles.bioText}> {STRINGS.LABEL.BIO} </Text>
-      {/* <Text 
-      numberOfLines={3}
-      style={styles.updatedBioTextStyle}>{updatedBio}</Text> */}
       <Text onTextLayout={onTextLayout} numberOfLines={textShown ? undefined : 3} style={styles.updatedBioTextStyle}>
         {updatedBio}
       </Text>
 
       {lengthMore ? (
         <Text onPress={toggleNumberOfLines} style={styles.readMoreStyle}>
-          {textShown ? 'Read Less' : 'Read More'}
+          {textShown ? 'less' : 'more'}
         </Text>
       ) : null}
+      { moreLength && (
+       <View style={{flexDirection: 'row'}}>
+       <Text style={styles.bioText}>{'Sports | Watch'}</Text>
+       <TouchableOpacity style={styles.addView}>
+         <Image style={styles.addImg} source={images.addNew} />
+       </TouchableOpacity>
+       <Text style={{fontSize:16,color:'white'}}>{yrs + " yrs " + days+" days "}</Text>
+     </View> )}
+        {moreLength ? (
+          <TouchableOpacity onPress={moreDetails}>
+            <Image
+              style={styles.moreLessStyle}
+              source={images.lessImg}
+            />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={moreDetails}>
+            <Image
+              style={styles.moreLessStyle}
+              source={images.moreImg}
+            />
+          </TouchableOpacity>
+        )}
+        
       </View>
     </SafeAreaView>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({
@@ -189,6 +225,19 @@ const styles = StyleSheet.create({
     fontStyle:'italic',
   },
   readMoreStyle:{
-    color:'white'
+    color:COLOR.BLUE
+  },
+  moreLessStyle:{
+    width: normalize(355), 
+    height: normalize(33),
+  },
+  addImg:{
+    height:normalize(50),
+    width:normalize(50),
+    resizeMode:'contain'
+  },
+  addView:{
+    left:normalize(180),
+    bottom:normalize(15)
   }
 });

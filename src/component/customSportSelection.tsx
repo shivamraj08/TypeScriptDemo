@@ -5,16 +5,16 @@ import COLOR from '../utils/color';
 import {images} from '../utils/images';
 
 
-function CustomSportSelection({img, imgText, helper,selectedSports}: any) {
+function CustomSportSelection({sportImg, sportName,_id, helper,selectedSports}: any) {
   const [choose, setChoose] = React.useState<any>(false);
   useEffect(()=>{
-    const l = selectedSports?.findIndex((item:any)=>item == imgText)
+    const l = selectedSports?.findIndex((item:any)=>item == sportName)
     if(l != -1){
       setChoose(true)
     }
   },[])
   const selectedItems = () => {
-    helper(imgText);
+    helper(sportName,_id);
     setChoose(!choose);
   };
   console.log('render');
@@ -28,7 +28,7 @@ function CustomSportSelection({img, imgText, helper,selectedSports}: any) {
         {choose && (
           <Image style={styles.rightCheck} source={images.selected} resizeMode={'contain'} />
         )}
-        <Image source={{uri: img}} style={[styles.gridimg,{tintColor: choose ? COLOR.BLACK : COLOR.WHITE}]} />
+        <Image source={{uri: sportImg}} style={[styles.gridimg,{tintColor: choose ? COLOR.BLACK : COLOR.WHITE}]} />
         <Text
           style={[
             styles.imgTextStyle,
@@ -37,7 +37,7 @@ function CustomSportSelection({img, imgText, helper,selectedSports}: any) {
               fontWeight: choose ? '400' : '400',
             },
           ]}>
-          {imgText}
+          {sportName}
         </Text>
       </View>
     </TouchableOpacity>

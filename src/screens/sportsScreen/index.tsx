@@ -29,8 +29,8 @@ function SportScreen(props: userdefined) {
 
   const helper = useCallback(
     (item: any) => {
-      const index = selectedSports.findIndex(x => x == item);
-      // console.log('selectedSports index', index);
+      const index = selectedSports.findIndex((x:any) => x == item);
+      console.log('selectedSports index', item);
       if (index == -1) {
         setselectedSports([...selectedSports, item]);
       } else {
@@ -45,8 +45,9 @@ function SportScreen(props: userdefined) {
     // console.log('selectedSports', selectedSports);
     return (
       <CustomSportSelection
-        img={item.sportImg}
-        imgText={item.sportName}
+        _id={item._id}
+        sportImg={item.sportImg}
+        sportName={item.sportName}
         helper={helper}
         selectedSports={selectedSports}
       />

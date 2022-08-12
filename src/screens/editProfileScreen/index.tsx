@@ -17,7 +17,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {checkUserNameAction, completeProfileAction, sportsApi} from './action';
 import ZipCode from '../zipCodeScreen';
 import {TextInput} from 'react-native-paper';
-import COLOR from '../../utils/color';
+import COLOR from '../../utils/color'
 
 export default function EditProfileScreen() {
   const [coverimage, setCoverImage] = React.useState('');
@@ -30,9 +30,13 @@ export default function EditProfileScreen() {
   const [error, setError] = useState<any>([]);
   const [zipcode, setzipcode] = React.useState('');
   const [zipcodeModal, setZipcodeModal] = React.useState(false);
-  const [selectedsports, setSelectedsports] = React.useState([]);
-  const [bio,setBio]=React.useState('')
   const {verify_Otp_Data} = useSelector((store: any) => store.VerifyOtpReducer);
+  const {Complete_profile}=useSelector((store:any)=>store.EditProfileReducer);
+  const [selectedsports, setSelectedsports] = React.useState([]);
+  let bio_detail=Complete_profile?.data?.personalDetails?.bio;
+  const [bio,setBio]=React.useState(bio_detail)
+  console.log("sdfghfghg",selectedsports);
+ 
   let usernameResult = verify_Otp_Data.data.username;
   const dispatch = useDispatch<any>();
   const params = useRoute<any>();
@@ -51,7 +55,8 @@ export default function EditProfileScreen() {
 
   const completeProfileEvent = () => {
     navigation.navigate('BottomTab');
-    dispatch(completeProfileAction(authToken, UserName, Id, zipcode, Name,bio));
+    dispatch(completeProfileAction(authToken, UserName, Id, zipcode, Name,bio,selectedDate,selectedsports,));
+    console.log("oooooopjoo selectedDate ",selectedDate)
   };
   const calendarOpen = () => {
     setOpen(true);
@@ -304,8 +309,9 @@ export default function EditProfileScreen() {
             </Text>
           </TouchableOpacity>
           <CustomTextInput label={STRINGS.LABEL.BIO} multiline={true} 
+          value={bio}
            onChangeText={(text:any)=>{
-            setBio(text);
+             setBio(text);
            }}
           />
           <CustomTextInput label={STRINGS.LABEL.REFERRAL_CODE} />
